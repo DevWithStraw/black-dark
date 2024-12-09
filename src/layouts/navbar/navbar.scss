@@ -1,0 +1,54 @@
+nav {
+    display: flex;
+    align-items: center;
+    background-color: #E3E3E3;
+    width: 100%;
+    height: 38px;
+    padding: 1.2rem;
+
+    ul {
+        display: flex;
+        margin-left: auto;
+        gap: 1.2rem;
+
+        li {
+            font-size: 1rem;
+        }
+    }
+
+    a {
+        color: #1a1a1a;
+        text-decoration: none;
+    }
+
+    button.cart {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        border-left: none;
+        gap: 0.3rem;
+
+        .badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 16px;
+            height: 20px;
+            color: #fff;
+            background-color: #1a1a1a;
+            border-radius: 4px;
+        }
+    }
+
+    button {
+        width: 112px;
+        height: 38px;
+        background-color: transparent;
+        color: #1a1a1a;
+        border: 3px solid #fff;
+        border-top: none;
+        border-bottom: none;
+        font-family: estedad;
+    }
+}
