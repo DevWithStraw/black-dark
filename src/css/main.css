@@ -1,9 +1,54 @@
+@font-face {
+  font-family: estedad-thin;
+  src: url("/src/fonts/Estedad-Thin.woff2") format("woff2");
+}
+@font-face {
+  font-family: estedad-light;
+  src: url("/src/fonts/Estedad-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: estedad;
+  src: url("/src/fonts/Estedad-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: estedad-light;
+  src: url("/src/fonts/Estedad-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: estedad-extra-light;
+  src: url("/src/fonts/Estedad-ExtraLight.woff2") format("woff2");
+}
+@font-face {
+  font-family: estedad-medium;
+  src: url("/src/fonts/Estedad-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: estedad-bold;
+  src: url("/src/fonts/Estedad-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: estedad-extra-bold;
+  src: url("/src/fonts/Estedad-ExtraBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: estedad-black;
+  src: url("/src/fonts/Estedad-Black.woff2") format("woff2");
+}
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: estedad;
+}
+
+body {
+  direction: rtl;
+}
+
+ul {
+  list-style: none;
 }
 
 /*# sourceMappingURL=main.css.map */
