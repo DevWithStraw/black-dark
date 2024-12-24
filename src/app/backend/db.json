@@ -1,0 +1,27 @@
+{
+  "register": [
+    {
+      "id": 0,
+      "username": "proxiner",
+      "phone_number": "09305426358",
+      "password": "83608360",
+      "created_at": "Dec,24,2024"
+    }
+  ],
+  "login": [
+    {
+      "id": 0,
+      "username": "proxiner",
+      "phone_number": "09305426358",
+      "password": "83608360"
+    }
+  ],
+  "verify": [
+    {
+      "id": 0,
+      "username": "proxiner",
+      "password": "83608360",
+      "code": "504839"
+    }
+  ]
+}
