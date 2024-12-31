@@ -1,4 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import InputProvider from "@app/context/InputContext";
+
+import { QueryClientProvider } from "@tanstack/react-query";
 
 import Navbar from "@app/ui/layouts/navbar";
 
@@ -20,16 +23,18 @@ function App() {
   const hideNav = notAllowed.includes(location.pathname);
 
   return (
-    <>
-      {!hideNav && <Navbar />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/auth/register" element={<Register />} />
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/verify" element={<Verficiation />} />
-      </Routes>
-    </>
+    <InputProvider>
+      <QueryClientProvider>
+        {!hideNav && <Navbar />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/verify" element={<Verficiation />} />
+        </Routes>
+      </QueryClientProvider>
+    </InputProvider>
   );
 }
 
