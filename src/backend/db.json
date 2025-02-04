@@ -1,0 +1,16 @@
+{
+  "register": [
+    {
+      "id": "e34b",
+      "username": "محمد شکیبی",
+      "password": "test",
+      "email": "mohamed.reza.8728@gmail.com"
+    },
+    {
+      "id": "ff3d",
+      "username": "مهدی",
+      "password": "test",
+      "email": "devwithstraw@gmail.com"
+    }
+  ]
+}

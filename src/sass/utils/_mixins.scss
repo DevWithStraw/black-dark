@@ -8,3 +8,45 @@
 @mixin padding($column: 0, $row: 2.5rem) {
   padding: $column $row;
 }
+
+
+$breakpoints: (
+  phone: (
+    min: 360px,
+    max: 512px,
+  ),
+
+  tablet: (
+    min : 768px,
+    max : 1024px,
+  ),
+
+  laptop: (
+    min : 1025px,
+    max : 1366px,
+  )
+);
+
+@mixin responsive($min-or-name, $max: null) {
+  @if type-of($min-or-name) == 'string' {
+    // Handle named breakpoint
+    $min-width: map-get(map-get($breakpoints, $min-or-name), min);
+    $max-width: map-get(map-get($breakpoints, $min-or-name), max);
+
+    @media screen and (min-width: #{$min-width}) and (max-width: #{$max-width}) {
+      @content;
+    }
+  } @else if type-of($min-or-name) == 'number' or unitless($min-or-name) == false {
+    // Handle custom range using $min-or-name as min and $max as max
+    @if $max == null {
+      @error "When providing custom sizes, both min and max values must be specified.";
+    } @else {
+      @media screen and (min-width: #{$min-or-name}) and (max-width: #{$max}) {
+        @content;
+      }
+    }
+  } @else {
+    @error "Invalid arguments provided. Use a named breakpoint or both min and max values.";
+  }
+}
+

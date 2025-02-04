@@ -1,23 +1,51 @@
-import React from "react";
-import "./login.scss";
+import React, { useContext, useState } from "react";
+import "../authentication.scss";
+
 
 import { Link } from "react-router-dom";
 
 import Input from "@ui/components/input";
+import axios from "axios";
+import { baseUrl } from "@app/helpers/variables";
+import { useQuery } from "@tanstack/react-query";
+
+import { useNavigate } from "react-router-dom";
+
+import { AuthenticationContext } from "@app/context/AuthenticationContext";
 
 export default function Login() {
-  const formInputs = [
-    {
-      id: 0,
-      type: "text",
-      placeholder: "نام کاربری",
-    },
-    {
-      id: 1,
-      type: "password",
-      placeholder: "رمز عبور",
-    },
-  ];
+
+  const navigate = useNavigate();
+
+  const { loginUsername, loginPassword } = useContext(AuthenticationContext)
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(`${baseUrl}/register`);
+      const users = response.data;
+
+      const user = users.find(
+        (user) => user.username === loginUsername && user.password === loginPassword
+      )
+
+      if (user) {
+        alert("Login Successful");
+        localStorage.setItem("verified", true);
+        localStorage.setItem("email" , user.email)
+        setTimeout(() => {
+          navigate("/auth/verify")
+        }, 2000)
+      }else{
+        console.error('falied')
+      }
+
+    } catch (error) {
+      console.error(error)
+    }
+  };
+
+  const formType = "login";
 
   return (
     <div className="wrapper">
@@ -25,20 +53,13 @@ export default function Login() {
         <img src="/assets/images/login.png" alt="model login" />
       </div>
 
-      <form>
+      <form onSubmit={loginUser}>
         <h3>BLACK DARK</h3>
-
         <div className="details">
-          {formInputs.map((input) => (
-            <Input
-              key={input.id}
-              type={input.type}
-              placeholder={input.placeholder}
-            />
-          ))}
-
-          <button type="submit">ورود</button>
-
+          <Input formType={formType} />
+          <button type="submit">
+            ورود
+          </button>
           <div className="row">
             <Link to="/auth/register">ثبت نام</Link>
             <Link to="/auth/forget-password">فراموشی رمز عبور</Link>

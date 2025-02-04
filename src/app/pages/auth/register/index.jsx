@@ -1,50 +1,49 @@
-import React from "react";
-import "./register.scss";
+import React , { useContext } from "react";
+import "../authentication.scss";
 
-import { Link } from "react-router-dom";
+
+import { Link , useNavigate } from "react-router-dom";
 import Input from "@app/ui/components/input";
 
-export default function index() {
-  const formInputs = [
-    {
-      id: 0,
-      type: "text",
-      placeholder: "نام کاربری",
-    },
+import {AuthenticationContext} from '@app/context/AuthenticationContext';
+import { baseUrl } from "@app/helpers/variables";
+import axios from "axios";
 
-    {
-      id: 1,
-      type: "text",
-      placeholder: "شماره موبایل",
-    },
+import { useMutation } from "@tanstack/react-query";
 
-    {
-      id: 2,
-      type: "password",
-      placeholder: "رمز عبور",
-    },
-    {
-      id: 3,
-      type: "password",
-      placeholder: "تکرار رمز عبور",
-    },
-  ];
+
+export default function Register() {
+  const { username, email, password} = useContext(AuthenticationContext);
+  
+  const formType = "register";
+  
+  const navigate = useNavigate();
+
+  const registerUser =  async (e) => {
+    e.preventDefault();
+      try {
+        const response = await axios.post(`${baseUrl}/register` , {
+          username , password , email
+        });
+        navigate('/auth/login')
+      } catch (error) {
+        console.error(error.message)
+      }
+  }
+
+  const {mutate : register} = useMutation({
+    mutationFn : registerUser,
+  })
 
   return (
     <div className="wrapper">
       <div className="model">
         <img src="/assets/images/register.png" alt="model sign up" />
       </div>
-      <form>
+      <form onSubmit={register}>
         <h3> BLACK DARK </h3>
         <div className="details">
-          {formInputs.map((detail) => (
-            <Input
-              key={detail.id}
-              type={detail.type}
-              placeholder={detail.placeholder}
-            />
-          ))}
+          <Input formType={formType}/>
           <button type="submit">ثبت نام</button>
         </div>
         <Link to="/auth/login"> حساب کاربری دارید؟ ورود </Link>

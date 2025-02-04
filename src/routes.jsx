@@ -6,6 +6,7 @@ import Home from "@pages/home";
 import NotFound from "@app/pages/404";
 import Register from "@pages/auth/register";
 import Login from "@app/pages/auth/login";
+import Verification from "@app/pages/auth/verification";
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/verify" element={<Verification />} />
       </Routes>
     </>
   );
