@@ -94,3 +94,7 @@ section.hero {
         }
     }
 }
+
+.special-sales{
+    @include flex(column , center , center);
+}

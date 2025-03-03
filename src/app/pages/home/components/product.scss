@@ -1,0 +1,69 @@
+@use '/src/sass/utils/mixins' as *;
+
+.product-container{
+    border: none;
+    border-radius: 8px;
+    width: 240px;
+    height: 334px;
+    margin-right: 1rem;
+    position: relative;
+
+    img{
+        border-radius: inherit;
+        position: absolute;
+    }
+
+    .info{
+        @include flex(column,center,initial);
+        background-color: #1a1a1aa5;
+        color: #fff;
+        gap: 0.1rem;
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+        height: 74px;
+        padding: 0rem 1rem;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        .title{
+            font-size: 1rem;
+        }
+
+        .prices{
+            margin-right: auto;
+
+            .finalPrice{
+                font-size: 1.3rem;
+            }
+
+            .originalPrice{
+                opacity: 70%;
+                font-size: 0.9rem;
+                text-decoration: line-through;
+                margin-left: 0.5rem;
+            }
+        }
+
+        .side-arrow-bg{
+            position: absolute;
+            width: 36px;
+            bottom: 0px;
+            right: 0px;
+
+            .shape{
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+
+            .arrow{
+                width: 50%;
+                position: absolute;
+                top: -22px;
+                right: 5px;
+            }
+        }
+    }
+}

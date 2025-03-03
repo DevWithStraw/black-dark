@@ -41,7 +41,7 @@ export default function navbar() {
       </nav>
       <div className="sub-nav">
         <div className="search-bar">
-          <img src="/assets/icons/Search.svg" alt="search ico" />
+          <img src="/assets/icons/search.svg" alt="search ico" />
           <input type="text" name="search-all" id="searchTheWholeSite" placeholder="جستجو" />
         </div>
         <ul>

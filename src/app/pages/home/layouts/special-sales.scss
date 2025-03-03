@@ -1,0 +1,6 @@
+@use '/src/sass/utils/mixins' as *;
+
+.products-details {
+    @include flex(row, space-between, center);
+    margin: 1rem 0;
+}
