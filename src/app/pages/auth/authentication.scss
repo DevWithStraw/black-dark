@@ -74,7 +74,7 @@
         border: 2px solid colors.$info;
       }
 
-      button[type="submit"] {
+      button.formBtns {
         background-color: colors.$primary;
         color: colors.$white;
         font-family: fonts.$medium;
@@ -87,9 +87,12 @@
       }
     }
 
-    a {
+    .editEmail , a {
       color: colors.$primary;
+      border: none;
       border-bottom: 2px solid colors.$neutral-30;
+      background-color: transparent;
+      cursor: pointer;
     }
   }
 }

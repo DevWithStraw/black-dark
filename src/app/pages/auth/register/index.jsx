@@ -22,7 +22,7 @@ export default function Register() {
   const registerUser =  async (e) => {
     e.preventDefault();
       try {
-        const response = await axios.post(`${baseUrl}/register` , {
+        const response = await axios.post(`${baseUrl}/users` , {
           username , password , email
         });
         navigate('/auth/login')
@@ -44,7 +44,7 @@ export default function Register() {
         <h3> BLACK DARK </h3>
         <div className="details">
           <Input formType={formType}/>
-          <button type="submit">ثبت نام</button>
+          <button type="submit" className="formBtns">ثبت نام</button>
         </div>
         <Link to="/auth/login"> حساب کاربری دارید؟ ورود </Link>
       </form>

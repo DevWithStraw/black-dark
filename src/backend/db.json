@@ -1,14 +1,14 @@
 {
-  "register": [
+  "users": [
     {
-      "id": "e34b",
-      "username": "محمد شکیبی",
-      "password": "test",
-      "email": "mohamed.reza.8728@gmail.com"
+      "id": "3395",
+      "username": "proxiner",
+      "password": "test1234",
+      "email": "mahdigamingcodezgil.com"
     },
     {
-      "id": "ff3d",
-      "username": "مهدی",
+      "id": "012e",
+      "username": "کاربر جدید",
       "password": "test",
       "email": "devwithstraw@gmail.com"
     }

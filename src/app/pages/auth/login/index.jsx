@@ -22,7 +22,7 @@ export default function Login() {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(`${baseUrl}/register`);
+      const response = await axios.get(`${baseUrl}/users`);
       const users = response.data;
 
       const user = users.find(
@@ -33,6 +33,8 @@ export default function Login() {
         alert("Login Successful");
         localStorage.setItem("verified", true);
         localStorage.setItem("email" , user.email)
+        localStorage.setItem("username" , user.username)
+        localStorage.setItem("password" , user.password)
         setTimeout(() => {
           navigate("/auth/verify")
         }, 2000)
@@ -57,7 +59,7 @@ export default function Login() {
         <h3>BLACK DARK</h3>
         <div className="details">
           <Input formType={formType} />
-          <button type="submit">
+          <button type="submit" className="formBtns">
             ورود
           </button>
           <div className="row">
