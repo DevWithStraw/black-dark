@@ -1,4 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import InputProvider from "@app/context/InputContext";
+
+import { QueryClientProvider } from "@tanstack/react-query";
 
 import Navbar from "@app/ui/layouts/navbar";
 

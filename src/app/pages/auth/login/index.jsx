@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
 import "../authentication.scss";
 
-
 import { Link } from "react-router-dom";
 
 import Input from "@ui/components/input";
 import axios from "axios";
 import { baseUrl } from "@app/helpers/variables";
-import { useQuery } from "@tanstack/react-query";
 
 import { useNavigate } from "react-router-dom";
 

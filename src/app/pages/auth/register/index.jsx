@@ -31,10 +31,11 @@ export default function Register() {
       }
   }
 
-  const {mutate : register} = useMutation({
-    mutationFn : registerUser,
+  const {mutation : register} = useMutation({
+    mutationKey : ["register"],
+    mutationFn: registerUser
   })
-
+  
   return (
     <div className="wrapper">
       <div className="model">
