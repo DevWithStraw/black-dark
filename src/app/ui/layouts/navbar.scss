@@ -43,3 +43,45 @@ nav {
     }
   }
 }
+
+.sub-nav {
+  @include flex(row, space-between, center);
+  @include padding(0, 24px);
+  margin-top: 1rem;
+
+  .search-bar{
+    @include flex(row , center , center);
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    width: 100px;
+    height: 40px;
+    position: relative;
+
+    img{
+      width: 25px;
+      position: absolute;
+      right: 5px;
+      transform: scaleX(-1);
+    }
+
+    input{
+      background-color: transparent;
+      width: 100%;
+      height: max-content;
+      margin-right: 1rem;
+    }
+  }
+
+  ul {
+    @include flex(row, center, center);
+    gap: 40px;
+    width: max-content;
+    height: 100%;
+  }
+
+  h3{
+    font-family: fonts.$en;
+    font-size: 1.3rem;
+    font-weight: 300;
+  }
+}
