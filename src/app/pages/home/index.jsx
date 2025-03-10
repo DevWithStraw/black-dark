@@ -17,7 +17,7 @@ export default function Home() {
                 <img src="/assets/images/model.png" alt="" />
             </div>
             <div className="forward">
-                <button onClick={"forwardUser"}>
+                <button>
                     {/* Forward user to the promoted product */}
                 </button>
             </div>

@@ -36,8 +36,8 @@ export default function Login() {
         setTimeout(() => {
           navigate("/auth/verify")
         }, 2000)
-      }else{
-        console.error('falied')
+      }else{  
+        alert("Login Credentials are Wrong!!!");
       }
 
     } catch (error) {

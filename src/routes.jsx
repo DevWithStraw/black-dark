@@ -1,7 +1,4 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import InputProvider from "@app/context/InputContext";
-
-import { QueryClientProvider } from "@tanstack/react-query";
 
 import Navbar from "@app/ui/layouts/navbar";
 
@@ -10,6 +7,9 @@ import NotFound from "@app/pages/404";
 import Register from "@pages/auth/register";
 import Login from "@app/pages/auth/login";
 import Verification from "@app/pages/auth/verification";
+import SpecialOffers from "@app/pages/products/special-offers";
+import User from "@app/pages/profile/user";
+import Admin from "@app/pages/profile/admin";
 
 function App() {
   const location = useLocation();
@@ -31,6 +31,9 @@ function App() {
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/verify" element={<Verification />} />
+        <Route path="/products/special-offers/:slug" element={<SpecialOffers />} />
+        <Route path="/profile/user" element={<User />} />
+        <Route path="/profile/admin" element={<Admin />} />
       </Routes>
     </>
   );

@@ -13,25 +13,28 @@ export default function SpecialSale() {
   const [productDetails, setProductDetails] = useState([
     {
       id: 0,
-      title: "کت بربری Burberry مدل A8 ",
+      title: "کت بربری Burberry مدل A8",
       ogPrice: "2,000,000",
       finalPrice: "1,416,000",
       image: Model1,
-      offer : 27
+      offer : 27,
+      address : "/products/special-offers/burberry"
     }, {
       id: 1,
-      title: "کت شلوار  بروکس Brooks  ",
+      title: "کت شلوار  بروکس Brooks",
       ogPrice: "2,000,000",
       finalPrice: "1,416,000",
       image: Model2,
-      offer : 25
+      offer : 25,
+      address : "/products/special-offers/brooks"
     }, {
       id: 2,
       title: "کت شلوارکانالی 320 Canali ",
       ogPrice: "2,000,000",
       finalPrice: "1,416,000",
       image: Model3,
-      offer : 18
+      offer : 18,
+      address : "/products/special-offers/canali"
     },
     {
       id: 3,
@@ -39,7 +42,8 @@ export default function SpecialSale() {
       ogPrice: "2,000,000",
       finalPrice: "1,416,000",
       image: Model4,
-      offer : 32
+      offer : 32,
+      address : "/products/special-offers/sp"
     },
     {
       id: 4,
@@ -47,7 +51,8 @@ export default function SpecialSale() {
       ogPrice: "2,000,000",
       finalPrice: "1,416,000",
       image: Model5,
-      offer : 25
+      offer : 25,
+      address : "/products/special-offers/vstay"
     },
   ]);
 
@@ -56,11 +61,12 @@ export default function SpecialSale() {
       {productDetails.map((product)=>(
         <Product
         key={product.id}
-          title={product.title}
-          ogPrice={product.ogPrice}
-          finalPrice={product.finalPrice}
-          image={product.image}
-          offer={product.offer}
+        address={product.address}
+        title={product.title}
+        ogPrice={product.ogPrice}
+        finalPrice={product.finalPrice}
+        image={product.image}
+        offer={product.offer}
         />
       ))}
     </div>

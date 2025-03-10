@@ -1,22 +1,32 @@
 import React from "react";
 import "./navbar.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function navbar() {
+
+  const loginState = localStorage.getItem('verified');
+
+  const navigate = useNavigate()
+
   const links = [
     {
       id: 0,
+      title: "صفحه اصلی",
+      url: "/",
+    },
+    {
+      id: 1,
       title: "تماس با ما",
       url: "/contact-us",
     },
     {
-      id: 1,
+      id: 2,
       title: "درباره ما",
       url: "/about-us",
     },
     {
-      id: 2,
+      id: 3,
       title: "وبلاگ",
       url: "/blog",
     },
@@ -37,7 +47,9 @@ export default function navbar() {
           سبد خرید
           <div className="indicator">2</div>
         </button>
-        <button className="profile-me">پروفایل من</button>
+        <button className="profile-me" onClick={() => navigate(loginState ? '/profile/user' : '/auth/register')}>
+          {loginState ? "پروفایل من" : "ثبت نام / ورود"}
+        </button>
       </nav>
       <div className="sub-nav">
         <div className="search-bar">

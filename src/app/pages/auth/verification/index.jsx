@@ -10,8 +10,12 @@ const numberInputs = [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
 
 export default function Verification() {
 
+
+
+
     const username = localStorage.getItem('username');
     const password = localStorage.getItem('password');
+    const loginState = localStorage.getItem('loginState');
 
     emailjs.init({
         publicKey: 'WS-6P9Da4FvGQ41yR',
@@ -21,6 +25,22 @@ export default function Verification() {
         },
 
     });
+
+    useEffect(() => {
+
+        const getUserInfo = async () => {
+            const response = await axios.get(`${baseUrl}/users`);
+            const users = response.data;
+
+            const user = users.find((user) => user.username === username && user.password === password);
+
+            if (user) {
+                localStorage.setItem('loginState' , user.admin)
+            }
+        }
+        getUserInfo();
+    }, [])
+
 
     const navigate = useNavigate();
 
@@ -90,7 +110,13 @@ export default function Verification() {
         let enteredCode = localStorage.getItem('code')
 
         if (enteredCode == code) {
-            alert('Verification was successful!')
+            alert('Verification was successful!');
+            console.log(typeof loginState)
+            if(loginState === "true"){
+                navigate('/profile/admin')
+            }else{
+                navigate('/profile/user')
+            }
         }
     }
 
@@ -105,7 +131,7 @@ export default function Verification() {
             const user = users.find(
                 (user) => user.username === username && user.password === password
             )
-            
+
             if (user) {
                 const response = await axios.patch(`${baseUrl}/users/${user.id}`, {
                     email: edittedEmail
@@ -124,13 +150,13 @@ export default function Verification() {
     useEffect(() => {
         const abortController = new AbortController();
         const signal = abortController.signal;
-    
+
         const sendEmail = async () => {
             let to_email = edittedEmail;
             try {
                 const response = await emailjs.send(
                     "service_8nul34o",
-                    "template_i0rju3l",
+                    "template_i0rju3l4",
                     { code, to_email },
                     { signal }
                 );
@@ -140,16 +166,17 @@ export default function Verification() {
                     console.log('ارسال ایمیل لغو شد.');
                 } else {
                     console.log('خطا...', error);
+                    console.log(code)
                 }
             }
         };
-    
+
         sendEmail();
-    
+
         return () => {
-            abortController.abort(); 
+            abortController.abort();
         };
-    }, []); 
+    }, []);
 
     return (
         <div className="wrapper">

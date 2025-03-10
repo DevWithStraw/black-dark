@@ -26,6 +26,7 @@ nav {
     border-left: 0.1875rem solid colors.$white;
     width: 7rem;
     height: 100%;
+    cursor: pointer;
 
     .indicator {
       @include flex(row, center, center);

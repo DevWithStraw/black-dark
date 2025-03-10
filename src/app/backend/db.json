@@ -1,27 +1,47 @@
 {
-  "register": [
+  "users": [
     {
-      "id": 0,
-      "username": "proxiner",
-      "phone_number": "09305426358",
-      "password": "83608360",
-      "created_at": "Dec,24,2024"
+      "id": "5f33",
+      "username": "Proxiner",
+      "password": "test",
+      "email": "im.proxiner@gmail.com",
+      "admin": false
+    },
+    {
+      "id": "bc03",
+      "username": "AdminUser",
+      "password": "test",
+      "email": "01skull01@gmail.com",
+      "admin": true
+    },
+    {
+      "id": "9052",
+      "username": "مهدی علیخانی",
+      "password": "test",
+      "email": "test@gmail.com",
+      "admin": false
     }
   ],
-  "login": [
+  "special-offers": [
     {
-      "id": 0,
-      "username": "proxiner",
-      "phone_number": "09305426358",
-      "password": "83608360"
-    }
-  ],
-  "verify": [
+      "id": "74775",
+      "slug": "burberry",
+      "title": "کت بربری Burberry مدل A8",
+      "ogPrice": "2,000,000",
+      "finalPrice": "1,416,000",
+      "image": "/assets/images/model-1.png",
+      "offer": 27,
+      "address": "/products/special-offers/burberry"
+    },
     {
-      "id": 0,
-      "username": "proxiner",
-      "password": "83608360",
-      "code": "504839"
+      "id": "84024",
+      "slug": "canali",
+      "title": "کت شلوارکانالی 320 Canali ",
+      "ogPrice": "2,000,000",
+      "finalPrice": "1,416,000",
+      "image": "/assets/images/model-3.png",
+      "offer": 18,
+      "address": "/products/special-offers/canali"
     }
   ]
 }

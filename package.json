@@ -10,7 +10,7 @@
     "backend": "npx json-server ./src/app/backend/db.json --port 3001",
     "lint": "eslint .",
     "start": "vite preview --port 4000",
-    "backend": "npx json-server ./src/backend/db.json --port 3001"
+    "backend": "npx json-server ./src/app/backend/db.json --port 3001"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
