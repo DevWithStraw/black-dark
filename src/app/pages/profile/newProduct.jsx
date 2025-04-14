@@ -7,17 +7,14 @@ import { baseUrl } from '@app/helpers/variables';
 export default function NewProduct() {
 
 
-    const [imagePreview, setImagePreview] = useState(null);
-    const [imageSrc, setImageSrc] = useState(null);
+    const [imagePreview, setImagePreview] = useState("");
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-          setImagePreview(URL.createObjectURL(file));
-          setImageSrc(file.name);
-          console.log(file)
-        }
-      };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+
+        setImagePreview(file.name)
+    }
+
 
     const createNewProduct = async (event) => {
         event.preventDefault();
@@ -43,6 +40,8 @@ export default function NewProduct() {
                 originalPrice: formData.get('originalPrice'),
                 offerPrice: formData.get('offerPrice'),
                 percentage: formData.get('percentage'),
+                imageSrc: imagePreview,
+                slug : formData.get('en-title')
             });
             console.log(response.data);
         } catch (error) {
@@ -94,12 +93,15 @@ export default function NewProduct() {
                             type="file"
                             name="image-product"
                             id="imageProduct"
-                            onChange={handleImageChange}
+                            onChange={(e) => handleImageChange(e)}
                         />
-                        {imagePreview && <img src={`/assets/images/${imageSrc}`} alt="Preview" />}
+                        {imagePreview && <img src={`/assets/images/${imagePreview}`} alt="" />}
                     </fieldset>
+                    <div className="row">
+                        <button type='submit'> ایجاد محصول </button>
+                    </div>
                 </section>
-                <button type='submit'> ایجاد محصول </button>
+
             </form>
         </>
     )

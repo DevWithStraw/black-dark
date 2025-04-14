@@ -54,10 +54,10 @@ nav {
     @include flex(row , center , center);
     border: 1px solid #bfbfbf;
     border-radius: 4px;
-    width: 100px;
+    width: 200px;
     height: 40px;
     position: relative;
-
+    
     img{
       width: 25px;
       position: absolute;
@@ -68,7 +68,9 @@ nav {
       background-color: transparent;
       width: 100%;
       height: max-content;
-      margin-right: 1rem;
+      margin-right: 2rem;
+      border: none;
+      outline: none
     }
   }
 

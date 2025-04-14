@@ -47,6 +47,7 @@
       "id": "b2a4",
       "title": "عنوان",
       "enTitle": "Title",
+      "slug": "Title",
       "brand": "برند ",
       "sizeSM": "on",
       "sizeS": null,
@@ -61,6 +62,27 @@
       "originalPrice": "2000000",
       "offerPrice": "",
       "percentage": "10"
+    },
+    {
+      "id": "1b50",
+      "title": "تست",
+      "enTitle": "test",
+      "slug": "test",
+      "brand": "برند",
+      "sizeSM": null,
+      "sizeS": "on",
+      "sizeM": "on",
+      "sizeL": "on",
+      "sizeXL": "on",
+      "colorB": null,
+      "colorBe": null,
+      "colorR": "on",
+      "colorG": null,
+      "colorP": null,
+      "originalPrice": "2000",
+      "offerPrice": "1800",
+      "percentage": "2%",
+      "imageSrc": "model-4.png"
     }
   ]
 }
