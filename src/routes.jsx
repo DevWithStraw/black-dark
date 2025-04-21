@@ -12,6 +12,7 @@ import User from "@app/pages/profile/user";
 import Admin from "@app/pages/profile/admin";
 import NewProduct from "@app/pages/profile/newProduct";
 import ProductDetails from "@app/ui/components/productDetails";
+import Products from "@app/pages/products/products";
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function App() {
     "/auth/login",
     "/auth/verify",
     "/auth/forget-password",
+    "/products"
   ];
   const hideNav = notAllowed.includes(location.pathname);
 
@@ -34,10 +36,11 @@ function App() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/verify" element={<Verification />} />
         <Route path="/products/special-offers/:slug" element={<SpecialOffers />} />
+        <Route path="/products/special-offers/:slug" element={<SpecialOffers />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/profile/user" element={<User />} />
         <Route path="/profile/admin" element={<Admin />} />
         <Route path="/profile/admin/new-product" element={<NewProduct />} />
-        <Route path="/products/product-details/:slug" element={<ProductDetails />} />
       </Routes>
     </>
   );

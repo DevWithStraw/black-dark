@@ -1,51 +1,42 @@
-import { baseUrl } from '@app/helpers/variables';
+import React from 'react';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { baseUrl } from '@app/helpers/variables';
 
 export default function ProductDetails() {
-
     const { slug } = useParams();
 
-    const fecthProduct = async () => {
-        try {
-            const { data } = await axios.get(`${baseUrl}/special-offers?slug=${slug}`);
-            return data;
-        } catch (error) {
-            console.log(error.message)
-        }
-    }
+    const fetchProduct = async () => {
+        const { data } = await axios.get(`${baseUrl}/special-offers?slug=${slug}`);
+        return data;
+    };
 
-    const { data: productDetails = [], isLoading, isError, isStale  } = useQuery({
-        refetchOnWindowFocus : false,
-        queryKey: ["product-detail"],
-        queryFn: fecthProduct,
-        staleTime: 1 * 6 * 1000,
-    })
+    const {
+        data: productDetails = [],
+        isLoading,
+        isError
+    } = useQuery({
+        queryKey: ['product-detail'],
+        queryFn: fetchProduct,
+        refetchOnWindowFocus: false,
+        staleTime: 2 * 60 * 1000
+    });
 
-
-    useEffect(() => {
-        console.log(isStale)
-    }, [isStale])
-
-
-    if (isLoading) return (
-        <h1>Product information is loading ...</h1>
-    )
-
-    if (isError) return (
-        <h1>Product fetching failed ❌ </h1>
-    )
-
+    if (isLoading) return <h1>Product information is loading ...</h1>;
+    if (isError) return <h1>Product fetching failed ❌</h1>;
 
     return (
         <>
             {productDetails.map((product) => (
-                <h1 key={product.id} >{product.title}</h1>
+                <>
+                <h1 key={product.id}>{product.title}</h1>
+                <p>{product.sizeSM && "SM"}</p>
+                <p>{product.sizeM && "M"}</p>
+                <p>{product.sizeL && "L"}</p>
+                <p>{product.sizeXL && "XL"}</p>
+                </>
             ))}
-
         </>
-
-    )
+    );
 }
