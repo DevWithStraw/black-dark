@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function navbar() {
 
   const loginState = localStorage.getItem('verified');
+  const adminState = localStorage.getItem('admin')
 
   const navigate = useNavigate()
 
@@ -47,7 +48,7 @@ export default function navbar() {
           سبد خرید
           <div className="indicator">2</div>
         </button>
-        <button className="profile-me" onClick={() => navigate(loginState ? '/profile/user' : '/auth/register')}>
+        <button className="profile-me" onClick={() => navigate(loginState ? `/profile${adminState === "true" ? "/admin" : "/user"}` : '/auth/login')}>
           {loginState ? "پروفایل من" : "ثبت نام / ورود"}
         </button>
       </nav>

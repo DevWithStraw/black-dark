@@ -6,18 +6,25 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export default function NewProduct() {
     const queryClient = useQueryClient();
-    const [imagePreview, setImagePreview] = useState("");
+    const [imageSrc, setImageSrc] = useState("");
 
-    const handleImageChange = (e) => {
+    const handleImageChange = async (e) => {
         const file = e.target.files[0];
-        setImagePreview(file.name);
+            const response = await axios.post('https://api.imgbb.com/1/upload?key=10b6e61bbf1bf47536a935f2c1655518' , {
+                image : file
+            } , {
+                headers : {
+                    "Content-Type" : "multipart/form-data"
+                }
+            })
+            setImageSrc(response.data.data.url)
     };
 
     const mutationFn = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
         try {
-            await axios.post(`${baseUrl}/special-offers`, {
+            await axios.post(`${baseUrl}/products`, {
                 title: formData.get('title'),
                 enTitle: formData.get('en-title'),
                 brand: formData.get('brand'),
@@ -26,6 +33,7 @@ export default function NewProduct() {
                 sizeM: formData.get('sizeM'),
                 sizeL: formData.get('sizeL'),
                 sizeXL: formData.get('sizeXL'),
+                sizeXS: formData.get('sizeXS'),
                 colorB: formData.get('colorB'),
                 colorBe: formData.get('colorBe'),
                 colorR: formData.get('colorR'),
@@ -34,7 +42,7 @@ export default function NewProduct() {
                 originalPrice: formData.get('originalPrice'),
                 offerPrice: formData.get('offerPrice'),
                 percentage: formData.get('percentage'),
-                imageSrc: imagePreview,
+                imageSrc,
                 slug: formData.get('en-title') 
             });
         } catch (error) {
@@ -68,6 +76,7 @@ export default function NewProduct() {
                         <label htmlFor="sizeM"> M </label><input type="checkbox" name="sizeM" id="sizeM" />
                         <label htmlFor="sizeL"> L </label><input type="checkbox" name="sizeL" id="sizeL" />
                         <label htmlFor="sizeXL"> XL </label><input type="checkbox" name="sizeXL" id="sizeXL" />
+                        <label htmlFor="sizeXS"> XS </label><input type="checkbox" name="sizeXS" id="sizeXS" />
                     </div>
                     <div className="colors">
                         <label htmlFor="colors"> رنگ های موجود محصول </label>
@@ -94,9 +103,9 @@ export default function NewProduct() {
                         type="file"
                         name="image-product"
                         id="imageProduct"
-                        onChange={handleImageChange}
+                        onChange={(e)=> handleImageChange(e)}
                     />
-                    {imagePreview && <img src={`/assets/images/${imagePreview}`} alt="Preview" />}
+                    {imageSrc && <img src={imageSrc} alt='image product'/>}
                 </fieldset>
 
                 <div className="row">

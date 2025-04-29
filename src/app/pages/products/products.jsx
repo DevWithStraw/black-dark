@@ -26,8 +26,6 @@ export default function Products() {
 
     const filteredProducts = products?.filter((product) => product.category === selectedCategory);
 
-
-
     return (
         <div className="container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <ul style={{ width: '600px', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '1rem', cursor: 'pointer' }}>
@@ -48,6 +46,7 @@ export default function Products() {
                     </div>
                 )) : products?.map((product) => (
                     <div key={product.id} style={{ marginBottom: '20px' }}>
+                        <img src={product.imageSrc}/>
                         <h3>{product.title}</h3>
                         <p>{product.category}</p>
                         <p>Brand: {product.brand}</p>

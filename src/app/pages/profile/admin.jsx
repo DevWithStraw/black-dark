@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate , Link } from 'react-router-dom';
 
 export default function Admin() {
@@ -12,9 +12,17 @@ export default function Admin() {
       localStorage.removeItem('code');
       localStorage.removeItem('loginState');
       localStorage.removeItem('verified');
-
       navigate('/auth/login');
   }
+
+  useEffect(()=>{
+   const adminState = localStorage.getItem('admin');
+
+    if(adminState !== "true"){
+      navigate('/profile/user')
+    }
+
+  },[])
 
   return (
     <div>

@@ -33,6 +33,7 @@ export default function Login() {
         localStorage.setItem("email" , user.email)
         localStorage.setItem("username" , user.username)
         localStorage.setItem("password" , user.password)
+        localStorage.setItem("admin" , user.admin);
         setTimeout(() => {
           navigate("/auth/verify")
         }, 2000)

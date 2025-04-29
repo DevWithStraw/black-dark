@@ -20,7 +20,7 @@ export default function User() {
   return (
     <div>
         <h1>خوش امدی {localStorage.getItem('username')}</h1>
-        <button style={{color : 'red'}} onClick={() => logOut}> خروج از حساب </button>
+        <button style={{color : 'red'}} onClick={logOut}> خروج از حساب </button>
     </div>
   )
 }
