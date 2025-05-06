@@ -1,71 +1,38 @@
 import React, { useState } from 'react';
 import './special-sales.scss';
 import Product from '../components/product';
-
-import Model1 from '@assets/images/model-1.png';
-import Model2 from '@assets/images/model-2.png';
-import Model3 from '@assets/images/model-3.png';
-import Model4 from '@assets/images/model-4.png';
-import Model5 from '@assets/images/model-5.png';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { baseUrl } from '@app/helpers/variables';
 
 export default function SpecialSale() {
 
-  const [productDetails, setProductDetails] = useState([
-    {
-      id: 0,
-      title: "کت بربری Burberry مدل A8",
-      ogPrice: "2,000,000",
-      finalPrice: "1,416,000",
-      image: Model1,
-      offer : 27,
-      address : "/products/special-offers/burberry"
-    }, {
-      id: 1,
-      title: "کت شلوار  بروکس Brooks",
-      ogPrice: "2,000,000",
-      finalPrice: "1,416,000",
-      image: Model2,
-      offer : 25,
-      address : "/products/special-offers/brooks"
-    }, {
-      id: 2,
-      title: "کت شلوارکانالی 320 Canali ",
-      ogPrice: "2,000,000",
-      finalPrice: "1,416,000",
-      image: Model3,
-      offer : 18,
-      address : "/products/special-offers/canali"
-    },
-    {
-      id: 3,
-      title: "کت زنانه اس پی ایتالیا SP Italy",
-      ogPrice: "2,000,000",
-      finalPrice: "1,416,000",
-      image: Model4,
-      offer : 32,
-      address : "/products/special-offers/sp"
-    },
-    {
-      id: 4,
-      title: "کت چرمی بلک مدل وسطای vstay",
-      ogPrice: "2,000,000",
-      finalPrice: "1,416,000",
-      image: Model5,
-      offer : 25,
-      address : "/products/special-offers/vstay"
-    },
-  ]);
+  const queryFn = async () => {
+    try {
+      const {data} = await axios.get(`${baseUrl}/products`);
+      return data
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
+  const {data : specialProducts} = useQuery({
+    queryKey : ['special-products'],
+    queryFn 
+  })
+
 
   return (
     <div className='products-details'>
-      {productDetails.map((product)=>(
+      {specialProducts?.map((product)=>(
         <Product
         key={product.id}
-        address={product.address}
+        address={`/products/special-offers/${product.slug}`}
         title={product.title}
-        ogPrice={product.ogPrice}
-        finalPrice={product.finalPrice}
-        image={product.image}
+        ogPrice={product.originalPrice}
+        finalPrice={product.offerPrice}
+        image={product.imageSrc}
         offer={product.offer}
         />
       ))}

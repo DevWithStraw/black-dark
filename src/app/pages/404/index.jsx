@@ -8,14 +8,14 @@ export default function NotFound() {
     <div
       style={{
         width: "100%",
-        height: "100dvh",
+        height: "max-content",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         gap: "1rem",
         position: "absolute",
-        inset: "0",
+        margin : "150px auto"
       }}
     >
       <h1>صفحه مورد نظر شما موجود نیست :(</h1>

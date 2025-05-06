@@ -14,7 +14,7 @@ export default function SpecialOffers() {
     useEffect(() => {
         const getProductData = async () => {
 
-            const response = await axios.get(`${baseUrl}/special-offers?slug=${slug}`);
+            const response = await axios.get(`${baseUrl}/products?slug=${slug}`);
             setProductDetails(response.data);
         }
         getProductData();
@@ -26,9 +26,9 @@ export default function SpecialOffers() {
             {productDetails.map((product) => (
                 <div key={product.id}>
                     <h1>{product.title}</h1>
-                    <span>{product.ogPrice}</span>
-                    <span>{product.finalPrice}</span>
-                    <img src={product.image} alt={product.title} />
+                    <span>{product.originalPrice}</span>
+                    <span>{product.offerPrice}</span>
+                    <img src={product.imageSrc} alt={product.title} />
                     <p>Product offer sale : {product.offer}</p>
                 </div>
             ))}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../authentication.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "@app/ui/components/input";
@@ -11,7 +11,7 @@ export default function Register() {
   const { username, email, password } = useContext(AuthenticationContext);
   const formType = "register";
   const navigate = useNavigate();
-
+  
   const registerUser  = async (userData) => {
     try {
       await axios.post(`${baseUrl}/users`, userData);
@@ -25,6 +25,7 @@ export default function Register() {
     mutationKey: ["register"],
     mutationFn: registerUser ,
   });
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

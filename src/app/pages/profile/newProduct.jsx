@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './newProduct.scss';
 import axios from 'axios';
 import { baseUrl } from '@app/helpers/variables';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export default function NewProduct() {
     const queryClient = useQueryClient();
@@ -10,14 +10,14 @@ export default function NewProduct() {
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
-            const response = await axios.post('https://api.imgbb.com/1/upload?key=10b6e61bbf1bf47536a935f2c1655518' , {
-                image : file
-            } , {
-                headers : {
-                    "Content-Type" : "multipart/form-data"
-                }
-            })
-            setImageSrc(response.data.data.url)
+        const response = await axios.post('https://api.imgbb.com/1/upload?key=10b6e61bbf1bf47536a935f2c1655518', {
+            image: file
+        }, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        setImageSrc(response.data.data.url)
     };
 
     const mutationFn = async (event) => {
@@ -43,7 +43,7 @@ export default function NewProduct() {
                 offerPrice: formData.get('offerPrice'),
                 percentage: formData.get('percentage'),
                 imageSrc,
-                slug: formData.get('en-title') 
+                slug: formData.get('en-title')
             });
         } catch (error) {
             console.error(error.message);
@@ -57,6 +57,26 @@ export default function NewProduct() {
         }
     });
 
+    const queryFn = async () => {
+        try {
+            const { data } = await axios.get(`${baseUrl}/categories`);
+            return data;
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const [categoryInput, setCategoryInput] = useState("");
+
+    const { data: categories } = useQuery({
+        queryKey: ["categories"],
+        queryFn
+    })
+
+    const filteredCategories = categories?.filter((cat) =>
+        cat.toLowerCase().includes(categoryInput.toLowerCase())
+    ) || [];
+    
     return (
         <form onSubmit={mutate}>
             <section className='rightSide'>
@@ -65,6 +85,23 @@ export default function NewProduct() {
                     <input className="newPrInput" name='title' type="text" placeholder='عنوان محصول شما' />
                     <input className="newPrInput" name='en-title' type="text" placeholder='عنوان انگیلیسی محصول شما' />
                     <input className="newPrInput" name='brand' type="text" placeholder='برند مصحول شما' />
+                    <input value={categoryInput} onChange={(e) => setCategoryInput(e.target.value)} className="newPrInput" name='category' type="text" placeholder='دسته بندی محصول شما' />
+                    <select
+                        name='categories'
+                    >
+                        {filteredCategories.length > 0 ? (
+                            filteredCategories.map((category, index) => (
+                                <option key={index} value={category}>
+                                    {category}
+                                </option>
+                            ))
+                        ) : (
+                            <option value={categoryInput}>
+                                جدید : {categoryInput}
+                            </option>
+                        )}
+                    </select>
+
                 </fieldset>
 
                 <fieldset>
@@ -103,9 +140,9 @@ export default function NewProduct() {
                         type="file"
                         name="image-product"
                         id="imageProduct"
-                        onChange={(e)=> handleImageChange(e)}
+                        onChange={(e) => handleImageChange(e)}
                     />
-                    {imageSrc && <img src={imageSrc} alt='image product'/>}
+                    {imageSrc && <img src={imageSrc} alt='image product' />}
                 </fieldset>
 
                 <div className="row">

@@ -111,7 +111,6 @@ export default function Verification() {
 
         if (enteredCode == code) {
             alert('Verification was successful!');
-            console.log(typeof loginState)
             if(loginState === "true"){
                 navigate('/profile/admin')
             }else{
