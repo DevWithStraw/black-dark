@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './newProduct.scss';
 import axios from 'axios';
-import { baseUrl } from '@app/helpers/variables';
+import { baseUrl, IMAGEBBKEY, IMAGEBBURL } from '@app/helpers/variables';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export default function NewProduct() {
@@ -10,7 +10,7 @@ export default function NewProduct() {
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
-        const response = await axios.post('https://api.imgbb.com/1/upload?key=10b6e61bbf1bf47536a935f2c1655518', {
+        const response = await axios.post(`${IMAGEBBURL}?key=${IMAGEBBKEY}`, {
             image: file
         }, {
             headers: {
@@ -23,6 +23,20 @@ export default function NewProduct() {
     const mutationFn = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
+        const newCategory = formData.get('categories');
+
+        const isCategoryUnique = !categories?.some((cat) => cat.category === newCategory);
+
+        if (isCategoryUnique) {
+            try {
+                await axios.post(`${baseUrl}/categories`, {
+                    category: newCategory
+                });
+            } catch (error) {
+                console.error("Error adding new category:", error.message);
+            }
+        }
+
         try {
             await axios.post(`${baseUrl}/products`, {
                 title: formData.get('title'),
@@ -43,10 +57,11 @@ export default function NewProduct() {
                 offerPrice: formData.get('offerPrice'),
                 percentage: formData.get('percentage'),
                 imageSrc,
+                category: newCategory,
                 slug: formData.get('en-title')
             });
         } catch (error) {
-            console.error(error.message);
+            console.error("Error creating product:", error.message);
         }
     };
 
@@ -66,17 +81,14 @@ export default function NewProduct() {
         }
     }
 
-    const [categoryInput, setCategoryInput] = useState("");
-
     const { data: categories } = useQuery({
         queryKey: ["categories"],
         queryFn
     })
 
-    const filteredCategories = categories?.filter((cat) =>
-        cat.toLowerCase().includes(categoryInput.toLowerCase())
-    ) || [];
-    
+    const [categoryInput, setCategoryInput] = useState("");
+
+
     return (
         <form onSubmit={mutate}>
             <section className='rightSide'>
@@ -89,17 +101,9 @@ export default function NewProduct() {
                     <select
                         name='categories'
                     >
-                        {filteredCategories.length > 0 ? (
-                            filteredCategories.map((category, index) => (
-                                <option key={index} value={category}>
-                                    {category}
-                                </option>
-                            ))
-                        ) : (
-                            <option value={categoryInput}>
-                                جدید : {categoryInput}
-                            </option>
-                        )}
+                        {categoryInput !== "" ? <option value={categoryInput}> {categoryInput} </option> : categories?.map((category, index) => (
+                            <option key={index} value={category.category}> {category.category} </option>
+                        ))}
                     </select>
 
                 </fieldset>
@@ -144,6 +148,7 @@ export default function NewProduct() {
                     />
                     {imageSrc && <img src={imageSrc} alt='image product' />}
                 </fieldset>
+
 
                 <div className="row">
                     <button type='submit'> ایجاد محصول </button>
