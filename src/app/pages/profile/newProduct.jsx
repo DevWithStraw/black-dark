@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './newProduct.scss';
 import axios from 'axios';
 import { baseUrl, IMAGEBBKEY, IMAGEBBURL } from '@app/helpers/variables';
@@ -7,130 +7,157 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 export default function NewProduct() {
     const queryClient = useQueryClient();
     const [imageSrc, setImageSrc] = useState("");
+    const [categoryInput, setCategoryInput] = useState("");
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const dropdownRef = useRef(null);
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
-        const response = await axios.post(`${IMAGEBBURL}?key=${IMAGEBBKEY}`, {
-            image: file
-        }, {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const response = await axios.post(`${IMAGEBBURL}?key=${IMAGEBBKEY}`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
-        })
-        setImageSrc(response.data.data.url)
+        });
+        setImageSrc(response.data.data.url);
+    };
+
+    const queryFn = async () => {
+        const { data } = await axios.get(`${baseUrl}/categories`);
+        return data;
+    };
+
+    const { data: categories = [] } = useQuery({
+        queryKey: ["categories"],
+        queryFn
+    });
+
+    const filteredCategories = categories.filter(cat =>
+        cat.category.toLowerCase().includes(categoryInput.toLowerCase())
+    );
+
+    const handleSelectCategory = (value) => {
+        setCategoryInput(value);
+        setShowSuggestions(false);
     };
 
     const mutationFn = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const newCategory = formData.get('categories');
+        const selectedCategory = formData.get('categories');
 
-        const isCategoryUnique = !categories?.some((cat) => cat.category === newCategory);
+        const isNewCategory = !categories.some(
+            (cat) => cat.category.toLowerCase() === selectedCategory.toLowerCase()
+        );
 
-        if (isCategoryUnique) {
-            try {
-                await axios.post(`${baseUrl}/categories`, {
-                    category: newCategory
-                });
-            } catch (error) {
-                console.error("Error adding new category:", error.message);
-            }
+        if (selectedCategory && isNewCategory) {
+            await axios.post(`${baseUrl}/categories`, { category: selectedCategory });
         }
 
-        try {
-            await axios.post(`${baseUrl}/products`, {
-                title: formData.get('title'),
-                enTitle: formData.get('en-title'),
-                brand: formData.get('brand'),
-                sizeSM: formData.get('sizeSM'),
-                sizeS: formData.get('sizeS'),
-                sizeM: formData.get('sizeM'),
-                sizeL: formData.get('sizeL'),
-                sizeXL: formData.get('sizeXL'),
-                sizeXS: formData.get('sizeXS'),
-                colorB: formData.get('colorB'),
-                colorBe: formData.get('colorBe'),
-                colorR: formData.get('colorR'),
-                colorG: formData.get('colorG'),
-                colorP: formData.get('colorP'),
-                originalPrice: formData.get('originalPrice'),
-                offerPrice: formData.get('offerPrice'),
-                percentage: formData.get('percentage'),
-                imageSrc,
-                category: newCategory,
-                slug: formData.get('en-title')
-            });
-        } catch (error) {
-            console.error("Error creating product:", error.message);
-        }
+        await axios.post(`${baseUrl}/products`, {
+            title: formData.get('title'),
+            enTitle: formData.get('en-title'),
+            brand: formData.get('brand'),
+            sizeSM: formData.get('sizeSM'),
+            sizeS: formData.get('sizeS'),
+            sizeM: formData.get('sizeM'),
+            sizeL: formData.get('sizeL'),
+            sizeXL: formData.get('sizeXL'),
+            sizeXS: formData.get('sizeXS'),
+            colorB: formData.get('colorB'),
+            colorBe: formData.get('colorBe'),
+            colorR: formData.get('colorR'),
+            colorG: formData.get('colorG'),
+            colorP: formData.get('colorP'),
+            originalPrice: formData.get('originalPrice'),
+            offerPrice: formData.get('offerPrice'),
+            percentage: formData.get('percentage'),
+            imageSrc,
+            category: selectedCategory,
+            slug: formData.get('en-title'),
+        });
+
+        queryClient.invalidateQueries({ queryKey: ['product-detail'] });
+        queryClient.invalidateQueries({ queryKey: ['categories'] });
     };
 
-    const { mutate } = useMutation({
-        mutationFn,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['product-detail'] });
-        }
-    });
+    const { mutate } = useMutation({ mutationFn });
 
-    const queryFn = async () => {
-        try {
-            const { data } = await axios.get(`${baseUrl}/categories`);
-            return data;
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
-    const { data: categories } = useQuery({
-        queryKey: ["categories"],
-        queryFn
-    })
-
-    const [categoryInput, setCategoryInput] = useState("");
-
+    // Close suggestions on click outside
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setShowSuggestions(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
         <form onSubmit={mutate}>
             <section className='rightSide'>
                 <fieldset>
-                    <legend> اطلاعات کلی محصول </legend>
+                    <legend>اطلاعات کلی محصول</legend>
                     <input className="newPrInput" name='title' type="text" placeholder='عنوان محصول شما' />
                     <input className="newPrInput" name='en-title' type="text" placeholder='عنوان انگیلیسی محصول شما' />
-                    <input className="newPrInput" name='brand' type="text" placeholder='برند مصحول شما' />
-                    <input value={categoryInput} onChange={(e) => setCategoryInput(e.target.value)} className="newPrInput" name='category' type="text" placeholder='دسته بندی محصول شما' />
-                    <select
-                        name='categories'
-                    >
-                        {categoryInput !== "" ? <option value={categoryInput}> {categoryInput} </option> : categories?.map((category, index) => (
-                            <option key={index} value={category.category}> {category.category} </option>
-                        ))}
-                    </select>
+                    <input className="newPrInput" name='brand' type="text" placeholder='برند محصول شما' />
 
+                    <div className="category-wrapper" ref={dropdownRef}>
+                        <input
+                            className="newPrInput"
+                            name="categories"
+                            type="text"
+                            placeholder="دسته‌بندی محصول شما"
+                            value={categoryInput}
+                            onChange={(e) => {
+                                setCategoryInput(e.target.value);
+                                setShowSuggestions(true);
+                            }}
+                            autoComplete="off"
+                        />
+                        {showSuggestions && categoryInput && (
+                            <ul className="suggestions">
+                                {filteredCategories.length > 0 ? (
+                                    filteredCategories.map((cat, i) => (
+                                        <li key={i} onClick={() => handleSelectCategory(cat.category)}>
+                                            {cat.category}
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li onClick={() => handleSelectCategory(categoryInput)}>
+                                        {categoryInput}
+                                    </li>
+                                )}
+                            </ul>
+                        )}
+                    </div>
                 </fieldset>
 
                 <fieldset>
-                    <legend> رنگ و سایزبندی </legend>
+                    <legend>رنگ و سایزبندی</legend>
                     <div className="sizes">
-                        <label htmlFor="sizes"> سایز های موجود محصول </label>
-                        <label htmlFor="sizeSM"> SM </label><input type="checkbox" name="sizeSM" id="sizeSM" />
-                        <label htmlFor="sizeS"> S </label><input type="checkbox" name="sizeS" id="sizeS" />
-                        <label htmlFor="sizeM"> M </label><input type="checkbox" name="sizeM" id="sizeM" />
-                        <label htmlFor="sizeL"> L </label><input type="checkbox" name="sizeL" id="sizeL" />
-                        <label htmlFor="sizeXL"> XL </label><input type="checkbox" name="sizeXL" id="sizeXL" />
-                        <label htmlFor="sizeXS"> XS </label><input type="checkbox" name="sizeXS" id="sizeXS" />
+                        <label>سایز های موجود:</label>
+                        {['SM', 'S', 'M', 'L', 'XL', 'XS'].map((size) => (
+                            <label key={size}>
+                                {size} <input type="checkbox" name={`size${size}`} />
+                            </label>
+                        ))}
                     </div>
                     <div className="colors">
-                        <label htmlFor="colors"> رنگ های موجود محصول </label>
-                        <label htmlFor="colorB"> Blue </label><input type="checkbox" name="colorB" id="colorB" />
-                        <label htmlFor="colorBe"> Beige </label><input type="checkbox" name="colorBe" id="colorBe" />
-                        <label htmlFor="colorR"> Red </label><input type="checkbox" name="colorR" id="colorR" />
-                        <label htmlFor="colorG"> Green </label><input type="checkbox" name="colorG" id="colorG" />
-                        <label htmlFor="colorP"> Pink </label><input type="checkbox" name="colorP" id="colorP" />
+                        <label>رنگ‌های موجود:</label>
+                        <label>Blue <input type="checkbox" name="colorB" /></label>
+                        <label>Beige <input type="checkbox" name="colorBe" /></label>
+                        <label>Red <input type="checkbox" name="colorR" /></label>
+                        <label>Green <input type="checkbox" name="colorG" /></label>
+                        <label>Pink <input type="checkbox" name="colorP" /></label>
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <legend> قیمت و تخفیف های محصول </legend>
+                    <legend>قیمت و تخفیف</legend>
                     <input className="newPrInput" name='originalPrice' type="text" placeholder='قیمت اصلی محصول' />
                     <input className="newPrInput" name='offerPrice' type="text" placeholder='قیمت بعد از تخفیف' />
                     <input className="newPrInput" name='percentage' type="text" placeholder='درصد تخفیف' />
@@ -139,19 +166,13 @@ export default function NewProduct() {
 
             <section className='leftSide'>
                 <fieldset>
-                    <legend> عکس های مصحول شما </legend>
-                    <input
-                        type="file"
-                        name="image-product"
-                        id="imageProduct"
-                        onChange={(e) => handleImageChange(e)}
-                    />
-                    {imageSrc && <img src={imageSrc} alt='image product' />}
+                    <legend>عکس محصول</legend>
+                    <input type="file" name="image-product" onChange={handleImageChange} />
+                    {imageSrc && <img src={imageSrc} alt='product' />}
                 </fieldset>
 
-
                 <div className="row">
-                    <button type='submit'> ایجاد محصول </button>
+                    <button type='submit'>ایجاد محصول</button>
                 </div>
             </section>
         </form>
