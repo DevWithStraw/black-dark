@@ -1,29 +1,38 @@
 import { baseUrl } from '@app/helpers/variables';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { useParams } from 'react-router-dom';
+import {Link , useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 export default function SpecialOffers() {
-
-    const [productDetails, setProductDetails] = useState([]);
-
     const { slug } = useParams();
 
+    const currentLocation = window.location.pathname;
+    const optimizedSlug = slug.replace(/ /g,"%20");
 
-    useEffect(() => {
-        const getProductData = async () => {
+    const filtredLocation = currentLocation.replace(optimizedSlug , "");
 
-            const response = await axios.get(`${baseUrl}/products?slug=${slug}`);
-            setProductDetails(response.data);
-        }
-        getProductData();
-    }, [])
+    const queryFn = async () => {
+        const {data} = await axios.get(`${baseUrl}/products?slug=${slug}`);
+        return data
+    }
+    
+    const {data : productDetails} = useQuery({
+        queryKey : ['product-details'],
+        queryFn
+    })
 
+    const category = productDetails?.map((product) => product.category)
 
     return (
         <>
-            {productDetails.map((product) => (
+        <div className="bread-crumb">
+            <Link to={'/'}> خانه </Link>
+            <Link to={filtredLocation}> پوشاک </Link>
+            <Link to={currentLocation}> {category} </Link>
+        </div>
+            {productDetails?.map((product) => (
                 <div key={product.id}>
                     <h1>{product.title}</h1>
                     <span>{product.originalPrice}</span>
