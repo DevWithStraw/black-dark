@@ -66,12 +66,32 @@
         "XL",
         "XS"
       ],
-      "colors": [
-        "Blue",
-        "Beige",
-        "Red",
-        "Pink",
-        "Green"
+     "colors": [
+        {
+          "letter": "B",
+          "expanded": "Blue",
+          "color": "#BDC7E1"
+        },
+        {
+          "letter": "B",
+          "expanded": "Beige",
+          "color": "#EBE9DA"
+        },
+        {
+          "letter": "R",
+          "expanded": "Red",
+          "color": "#A97676"
+        },
+        {
+          "letter": "P",
+          "expanded": "Pink",
+          "color": "#EBDAE7"
+        },
+        {
+          "letter": "G",
+          "expanded": "Green",
+          "color": "#87AA93"
+        }
       ],
       "originalPrice": "2,800,000",
       "offerPrice": "",

@@ -44,7 +44,14 @@ export default function NewProduct() {
     };
 
     const allSizes = ['SM', 'S', 'M', 'L', 'XL', 'XS'];
-    const allColors = ['Blue', 'Beige', 'Red', 'Pink', 'Green'];
+    const allColors = [
+        { letter: 'B', expanded: 'Blue', color: '#BDC7E1' },
+        { letter: 'B', expanded: 'Beige', color: '#EBE9DA' },
+        { letter: 'R', expanded: 'Red', color: '#A97676' },
+        { letter: 'P', expanded: 'Pink', color: '#EBDAE7' },
+        { letter: 'G', expanded: 'Green', color: '#87AA93' },
+    ];
+
 
     const mutationFn = async (event) => {
         event.preventDefault();
@@ -60,14 +67,16 @@ export default function NewProduct() {
         }
 
         const selectedSizes = allSizes.filter(size => formData.get(`size${size}`));
-        const selectedColors = allColors.filter(color => formData.get(`colors-${color}`));        
+        const selectedColors = allColors.filter(color =>
+            formData.get(`colors-${color.expanded}`)
+        );
 
         await axios.post(`${baseUrl}/products`, {
             title: formData.get('title'),
             enTitle: formData.get('en-title'),
             brand: formData.get('brand'),
             sizes: selectedSizes,
-            colors : selectedColors,
+            colors: selectedColors,
             originalPrice: formData.get('originalPrice'),
             offerPrice: formData.get('offerPrice'),
             percentage: formData.get('percentage'),
@@ -145,11 +154,12 @@ export default function NewProduct() {
                     </div>
                     <div className="colors">
                         <label>رنگ‌های موجود:</label>
-                        {allColors.map((color) => (
-                            <label key={color}>
-                                {color} <input type="checkbox" name={`colors-${color}`} />
+                        {allColors.map(({ letter, expanded, color }) => (
+                            <label key={expanded}>
+                                {expanded} <input type="checkbox" name={`colors-${expanded}`} />
                             </label>
                         ))}
+
                     </div>
                 </fieldset>
 

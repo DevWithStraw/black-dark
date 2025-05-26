@@ -48,7 +48,7 @@ export default function SpecialOffers() {
             </div>
 
             {productDetails?.map((product) => (
-                <div className="special-offers-container">
+                <div className="special-offers-container" key={product.id}>
                     <section className="general-info">
                         <section className="purchase-info">
                             <h2 className="title">{product.title}</h2>
@@ -61,16 +61,14 @@ export default function SpecialOffers() {
                             </ul>
                             <ul className="colors-picker">
                                 {product.colors.map((color, index) => (
-                                    <li onClick={() => handleColor(index)} style={{backgroundColor : color}} className={selectedColor === index ? 'selectedColor' : ''} key={index}> {color} </li>
+                                    <li onClick={() => handleColor(index)} style={{ backgroundColor: color.color }} className={selectedColor === index ? 'selectedColor' : ''} key={index}> {selectedColor === index ? color.expanded : color.letter} </li>
                                 ))}
                             </ul>
-                            <div className="row">
+                            {/* <div className="row">
                                 <span className='brand'>{product.brand}</span>
-                                <div className="prices">
-
-                                </div>
-                            </div>
-                            <button> افزودن به سبد خرید </button>
+                                <div className="prices"></div>
+                            </div> */}
+                            {/* <button> افزودن به سبد خرید </button> */}
                         </section>
                         <section className="more-details"></section>
                     </section>

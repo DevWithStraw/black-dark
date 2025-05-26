@@ -44,6 +44,8 @@
     .sizes-chooser {
         @include flex(row, center, center);
         gap: 1rem;
+        width: max-content;
+        margin: 2rem 0 1rem 0;
 
         span,
         li {
@@ -74,22 +76,21 @@
     }
 
     .colors-picker {
+        width: max-content;
         @include flex(row, center, center);
         gap: 1rem;
-        margin: 1rem;
-        width: 100%;
         height: max-content;
-        padding: 1rem;
+        direction: ltr;
 
         li {
-            @include flex(row, flex-end, center);
+            @include flex(row, center, center);
             width: 48px;
             height: 48px;
             border-radius: 0.5rem;
             transition: all ease-in-out 0.3s;
             cursor: pointer;
             font-family: fonts.$en;
-            color: colors.$primary-40;
+            color: colors.$primary-20;
             font-size: 1.5rem;
             white-space: nowrap;
             overflow: hidden;
@@ -97,9 +98,7 @@
         }
 
         .selectedColor {
-            @include flex(row, center, center);
             width: 128px;
-            border: 1px solid #171717;
         }
     }
 }
