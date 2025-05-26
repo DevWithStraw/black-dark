@@ -58,23 +58,26 @@
       "title": "ژاکت زیپ دار پشمی با آرم برجسته گوچی",
       "enTitle": "Logo-Embossed Wool-Blend Zip-Up Sweater",
       "brand": "GUCCI",
-      "sizeSM": "on",
-      "sizeS": "on",
-      "sizeM": "on",
-      "sizeL": "on",
-      "sizeXL": null,
-      "sizeXS": "on",
-      "colorB": "on",
-      "colorBe": "on",
-      "colorR": "on",
-      "colorG": "on",
-      "colorP": "on",
+      "sizes": [
+        "SM",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XS"
+      ],
+      "colors": [
+        "Blue",
+        "Beige",
+        "Red",
+        "Pink",
+        "Green"
+      ],
       "originalPrice": "2,800,000",
       "offerPrice": "",
       "percentage": "",
       "imageSrc": "https://i.ibb.co/xS2ndNwr/Gucci-center.png",
-      "category": "کاپشن",
-      "slug": "Logo-Embossed Wool-Blend Zip-Up Sweater"
+      "category": "کاپشن"
     }
   ]
 }
