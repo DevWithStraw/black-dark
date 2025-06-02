@@ -43,6 +43,16 @@ export default function NewProduct() {
         setShowSuggestions(false);
     };
 
+    const allSizes = ['SM', 'S', 'M', 'L', 'XL', 'XS'];
+    const allColors = [
+        { letter: 'B', expanded: 'Blue', color: '#BDC7E1' },
+        { letter: 'B', expanded: 'Beige', color: '#EBE9DA' },
+        { letter: 'R', expanded: 'Red', color: '#A97676' },
+        { letter: 'P', expanded: 'Pink', color: '#EBDAE7' },
+        { letter: 'G', expanded: 'Green', color: '#87AA93' },
+    ];
+
+
     const mutationFn = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -56,21 +66,17 @@ export default function NewProduct() {
             await axios.post(`${baseUrl}/categories`, { category: selectedCategory });
         }
 
+        const selectedSizes = allSizes.filter(size => formData.get(`size${size}`));
+        const selectedColors = allColors.filter(color =>
+            formData.get(`colors-${color.expanded}`)
+        );
+
         await axios.post(`${baseUrl}/products`, {
             title: formData.get('title'),
             enTitle: formData.get('en-title'),
             brand: formData.get('brand'),
-            sizeSM: formData.get('sizeSM'),
-            sizeS: formData.get('sizeS'),
-            sizeM: formData.get('sizeM'),
-            sizeL: formData.get('sizeL'),
-            sizeXL: formData.get('sizeXL'),
-            sizeXS: formData.get('sizeXS'),
-            colorB: formData.get('colorB'),
-            colorBe: formData.get('colorBe'),
-            colorR: formData.get('colorR'),
-            colorG: formData.get('colorG'),
-            colorP: formData.get('colorP'),
+            sizes: selectedSizes,
+            colors: selectedColors,
             originalPrice: formData.get('originalPrice'),
             offerPrice: formData.get('offerPrice'),
             percentage: formData.get('percentage'),
@@ -140,7 +146,7 @@ export default function NewProduct() {
                     <legend>رنگ و سایزبندی</legend>
                     <div className="sizes">
                         <label>سایز های موجود:</label>
-                        {['SM', 'S', 'M', 'L', 'XL', 'XS'].map((size) => (
+                        {allSizes.map((size) => (
                             <label key={size}>
                                 {size} <input type="checkbox" name={`size${size}`} />
                             </label>
@@ -148,11 +154,12 @@ export default function NewProduct() {
                     </div>
                     <div className="colors">
                         <label>رنگ‌های موجود:</label>
-                        <label>Blue <input type="checkbox" name="colorB" /></label>
-                        <label>Beige <input type="checkbox" name="colorBe" /></label>
-                        <label>Red <input type="checkbox" name="colorR" /></label>
-                        <label>Green <input type="checkbox" name="colorG" /></label>
-                        <label>Pink <input type="checkbox" name="colorP" /></label>
+                        {allColors.map(({ letter, expanded, color }) => (
+                            <label key={expanded}>
+                                {expanded} <input type="checkbox" name={`colors-${expanded}`} />
+                            </label>
+                        ))}
+
                     </div>
                 </fieldset>
 
