@@ -2,30 +2,30 @@ import React from "react";
 
 import "./home.scss";
 import SpecialSale from "./layouts/special-sale";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     return (
         <>
             <section className="hero">
-                <img className="logo" src="/assets/images/hakopian-logo.svg" />
-                <div className="hero-contents">
-                    <div className="right">
-
-                        <h1>کت و شلوار های هاکوپیان</h1>
-                        <h2> انواع کت شلوار های مردانه و زنانه در بلک دارک <div className="arrow"></div></h2>
-
-                    </div>
-                    <div className="side">
-                        <div className="hero-offset">
-                            <div className="bottom-right-mask"></div>
-                            <div className="top-right-mask"></div>
-                        </div>
+                <div className="texts-container">
+                    <div className="texts">
+                        <h2>
+                            کت شلوار های هاکوپیان
+                        </h2>
+                        <h3>
+                            انواع کت شلوار های مردانه و زنانه در بلک دارک
+                            <Link className="arrow-left" to={'/special-sale'}></Link>
+                        </h3>
+                        <span> HAKOPIAN </span>
+                        <div className="shine"></div>
                     </div>
                 </div>
-                <div className="forward">
-                    <button>
-                        {/* Forward user to the promoted product */}
-                    </button>
+
+                <div className="banner">
+                    <img src="/assets/images/hero-banner.png" alt="hero banner" />
+                    <Link to={'/special-sale'} className="link-forward"></Link>
+                    <img className="logo" src="/assets/images/hakopian-logo.svg" alt="logo" />
                 </div>
             </section>
             <section className="special-sales">

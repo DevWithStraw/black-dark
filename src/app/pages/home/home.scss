@@ -5,98 +5,110 @@
 section.hero {
     @include flex(row-reverse, initial, initial);
     width: 100%;
-    height: 550px;
+    height: 100%;
     position: relative;
     color: colors.$white;
-    padding: 2rem;
+    padding: 2.5rem;
 
-    .logo {
+    .texts-container {
+        @include flex(row, center, center);
         position: absolute;
-        top: 20px;
-        left: 20px;
-        opacity: 0.2;
-    }
-
-    .hero-contents {
-        @include flex(row-reverse, center, center);
         width: 100%;
         height: 100%;
+        inset: 0;
 
-        .right {
-            @include flex(column, center, center);
-            gap: 1.2rem;
-            border-radius: 1.8rem 0 0 1.8rem;
-            width: 90%;
-            height: 100%;
-            background-color: #171717;
-        }
-
-        .side {
-            width: 10%;
-            height: 100%;
-            background-color: #171717;
-            border-radius: 0 1.8rem 0 0;
+        .texts {
+            @include flex(column, center, initial);
+            z-index: 1;
+            width: max-content;
+            height: max-content;
             position: relative;
-        }
+            right: 130px;
 
-        .hero-offset {
-            width: 200px;
-            height: 22.41%;
-            background-color: #12c32c;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            border-radius: 1.8rem 0 0 0;
-        }
+            h2 {
+                font-size: 3.5rem;
+                font-family: fonts.$medium;
+            }
 
-        .top-right-mask {
-            width: 80px;
-            height: 80px;
-            background-color: red;
-            position: absolute;
-            top: -80px;
-            right: 0;
-            border-radius: 100% 0 1.8rem 0;
-        }
+            h3 {
+                font-family: fonts.$regular;
+                font-size: 1.8rem;
+                margin-top: 1rem;
 
-        h1 {
-            font-size: 3rem;
-        }
+                a.arrow-left{
+                    background-color: #e3e3e3;
+                    border: none;
+                    border-radius: 0.5rem;
+                    width: 32px;
+                    height: 32px;
+                    background-image: url('/assets/icons/Arrows/arrow-left.svg');
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: 60%;
+                    position: absolute;
+                    margin-right: 0.5rem;
+                }
+            }
 
-        h2 {
-            @include flex(row, center, center);
-            font-size: 2rem;
+            span {
+                position: absolute;
+                font-family: fonts.$en;
+                font-size: 7rem;
+                color: #ffffff;
+                opacity: 0.1;
+                top: -70px;
+                left: -190px;
+            }
 
-            .arrow {
-                width: 32px;
-                height: 32px;
-                border-radius: 8px;
-                background-color: colors.$neutral-20;
-                background-image: url('/assets/icons/Arrows/Arrow-Left.svg');
-                background-repeat: no-repeat;
-                background-position: center center;
-                margin-right: 0.5rem;
-                background-size: 60%;
+            .shine {
+                width: 487px;
+                height: 487px;
+                position: absolute;
+                inset: -200px 80px;
+                background: #BDBDBD;
+                background: radial-gradient(circle, rgba(255, 255, 255, 0.19) 0%, rgba(0, 0, 0, 0) 100%);
+                opacity: 0.5;
+                border: none;
+                border-radius: 50%;
+                filter: blur(100px);
             }
         }
+
     }
 
-    .forward {
-        position: absolute;
-        bottom: -8px;
-        right: 30px;
 
-        button {
-            display: none;
-            width: 150px;
-            height: 90px;
-            background-color: #eb0000;
+    .banner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        & img {
+            width: inherit;
+            height: inherit;
+            object-fit: contain;
+        }
+
+        & a.link-forward {
+            position: absolute;
+            background-color: #171717;
+            width: 11%;
+            height: 20%;
             border: none;
-            background-image: url('/assets/icons/Arrows/Arrow-Right-Up.svg');
-            background-size: 45%;
+            border-radius: 1.5rem;
+            bottom: 10px;
+            right: 0;
+            background-image: url('/assets/icons/Arrows/arrow-right-up.svg');
             background-repeat: no-repeat;
             background-position: center center;
-            border-radius: 16px;
+            background-size: 40%
+        }
+
+        & .logo{
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            width: 10%;
+            height: 120px;
         }
     }
 }
