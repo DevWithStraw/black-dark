@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AuthenticationContext } from "@app/context/AuthenticationContext";
 
-export default function Login() {
+export default function Login({backgroundImage}) {
 
   const navigate = useNavigate();
 
@@ -30,14 +30,14 @@ export default function Login() {
       if (user) {
         alert("Login Successful");
         localStorage.setItem("verified", true);
-        localStorage.setItem("email" , user.email)
-        localStorage.setItem("username" , user.username)
-        localStorage.setItem("password" , user.password)
-        localStorage.setItem("admin" , user.admin);
+        localStorage.setItem("email", user.email)
+        localStorage.setItem("username", user.username)
+        localStorage.setItem("password", user.password)
+        localStorage.setItem("admin", user.admin);
         setTimeout(() => {
           navigate("/auth/verify")
         }, 2000)
-      }else{  
+      } else {
         alert("Login Credentials are Wrong!!!");
       }
 
@@ -50,10 +50,7 @@ export default function Login() {
 
   return (
     <div className="wrapper">
-      <div className="model">
-        <img src="/assets/images/login.png" alt="model login" />
-      </div>
-
+      <div className="image-container" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
       <form onSubmit={loginUser}>
         <h3>BLACK DARK</h3>
         <div className="details">

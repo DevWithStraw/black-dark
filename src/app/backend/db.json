@@ -20,6 +20,20 @@
       "password": "test",
       "email": "test@gmail.com",
       "admin": false
+    },
+    {
+      "id": "14ff",
+      "username": "Hello wordl",
+      "password": "",
+      "email": "",
+      "admin": false
+    },
+    {
+      "id": "f86e",
+      "username": "",
+      "password": "",
+      "email": "",
+      "admin": false
     }
   ],
   "categories": [

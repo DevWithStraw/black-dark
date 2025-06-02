@@ -2,6 +2,10 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "@app/ui/layouts/navbar";
 
+import bgRegister from '/assets/images/register.png';
+import bgLogin from '/assets/images/login.png';
+import bgVerify from '/assets/images/verification.png';
+
 import Home from "@pages/home";
 import NotFound from "@app/pages/404";
 import Register from "@pages/auth/register";
@@ -32,9 +36,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/auth/register" element={<Register />} />
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/verify" element={<Verification />} />
+        <Route path="/auth/register" element={<Register backgroundImage={bgRegister}/>} />
+        <Route path="/auth/login" element={<Login backgroundImage={bgLogin} />} />
+        <Route path="/auth/verify" element={<Verification backgroundImage={bgVerify} />} />
         <Route path="/products/special-offers/:slug" element={<SpecialOffers />} />
         <Route path="/products" element={<Products />} />
         <Route path="/profile/user" element={<User />} />

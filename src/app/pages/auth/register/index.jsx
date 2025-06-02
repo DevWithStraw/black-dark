@@ -7,11 +7,12 @@ import { baseUrl } from "@app/helpers/variables";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 
-export default function Register() {
+
+export default function Register({backgroundImage}) {
   const { username, email, password } = useContext(AuthenticationContext);
   const formType = "register";
   const navigate = useNavigate();
-  
+
   const registerUser  = async (userData) => {
     try {
       await axios.post(`${baseUrl}/users`, userData);
@@ -34,9 +35,7 @@ export default function Register() {
 
   return (
     <div className="wrapper">
-      <div className="model">
-        <img src="/assets/images/register.png" alt="model sign up" />
-      </div>
+      <div className="image-container" style={{backgroundImage : `url(${backgroundImage})`}}></div>
       <form onSubmit={handleSubmit}>
         <h3> BLACK DARK </h3>
         <div className="details">
