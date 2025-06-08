@@ -28,6 +28,7 @@ export default function SpecialOffers() {
 
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
+    const [isDetailOpen , setIsDetailOpen]= useState(false);
 
     const handleSize = (index) => {
         setSelectedSize(index)
@@ -35,6 +36,11 @@ export default function SpecialOffers() {
 
     const handleColor = (index) => {
         setSelectedColor(index)
+    }
+
+    const toggleDetail = (e) => {
+        e.target.classList.toggle('opened');
+        setIsDetailOpen(isDetailOpen => isDetailOpen = !isDetailOpen)
     }
 
     return (
@@ -51,8 +57,10 @@ export default function SpecialOffers() {
                 <div className="special-offers-container" key={product.id}>
                     <section className="general-info">
                         <section className="purchase-info">
-                            <h2 className="title">{product.title}</h2>
-                            <h3 className="en-title">{product.enTitle}</h3>
+                            <div className="title-container">
+                                <h2 className="title">{product.title}</h2>
+                                <h3 className="en-title">{product.enTitle}</h3>
+                            </div>
                             <ul className="sizes-chooser">
                                 <span> راهنما سایــز </span>
                                 {product.sizes.map((size, index) => (
@@ -64,13 +72,24 @@ export default function SpecialOffers() {
                                     <li onClick={() => handleColor(index)} style={{ backgroundColor: color.color }} className={selectedColor === index ? 'selectedColor' : ''} key={index}> {selectedColor === index ? color.expanded : color.letter} </li>
                                 ))}
                             </ul>
-                            {/* <div className="row">
+                            <div className="row">
                                 <span className='brand'>{product.brand}</span>
-                                <div className="prices"></div>
-                            </div> */}
-                            {/* <button> افزودن به سبد خرید </button> */}
+                                <div className="prices">{product.originalPrice}</div>
+                            </div>
+                            <button className='add-to-cart'> افزودن به سبد خرید <div className="cart"></div> </button>
                         </section>
-                        <section className="more-details"></section>
+                        <section className="more-details">
+                            <div className="detail-container">
+                                <div className="anchor" onClick={(e) => toggleDetail(e)}></div>
+                                <details open={isDetailOpen ? true : false}>
+                                    <summary>  توضیحات </summary>
+                                    <p>
+                                        کت و شلوارهای سبک اروپایی که ممکن است کت و شلوارهای قاره‌ای یا ایتالیایی نیز نامیده شوند، معمولاً نزدیک به سایز بدن و جذب بریده می‌شوند و دارای دو دکمه و در یک ردیف هستند. این کت‌وشلوارها برای مردان لاغراندام بسیار خوب به نظر می‌رسند. در سبک اروپایی شانه‌ها اغلب پد دارند و جایگاه دکمه‌ها و قسمت برگردان یقه کت بالاتر از سبک آمریکایی و انگلیسی است. سبک اروپایی برخلاف سبک انگلیسی، به دلیل اینکه در آب‌وهوای گرم‌تری پوشیده می‌شود با پارچه‌های سبک و خنک‌ دوخته می‌شود.
+                                    </p>
+                                </details>
+                            </div>
+
+                        </section>
                     </section>
                     <section className="image-holder"></section>
                 </div>
