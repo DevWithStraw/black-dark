@@ -10,14 +10,14 @@ section.hero {
     color: colors.$white;
     padding: 2.5rem;
 
-    .texts-container {
+    & .texts-container {
         @include flex(row, center, center);
         position: absolute;
         width: 100%;
         height: 100%;
         inset: 0;
 
-        .texts {
+        & .texts {
             @include flex(column, center, initial);
             z-index: 1;
             width: max-content;
@@ -25,17 +25,17 @@ section.hero {
             position: relative;
             right: 130px;
 
-            h2 {
+            & h2 {
                 font-size: 3.5rem;
                 font-family: fonts.$medium;
             }
 
-            h3 {
+            & h3 {
                 font-family: fonts.$regular;
                 font-size: 1.8rem;
                 margin-top: 1rem;
 
-                a.arrow-left {
+                & a.arrow-left {
                     background-color: #e3e3e3;
                     border: none;
                     border-radius: 0.5rem;
@@ -50,7 +50,7 @@ section.hero {
                 }
             }
 
-            span {
+            & span {
                 position: absolute;
                 font-family: fonts.$en;
                 font-size: 7rem;
@@ -60,7 +60,7 @@ section.hero {
                 left: -190px;
             }
 
-            .shine {
+            & .shine {
                 width: 487px;
                 height: 487px;
                 position: absolute;
@@ -115,28 +115,48 @@ section.hero {
 
 .gendred-collections {
     width: 100%;
+    min-height: 400px;
+    max-height: 400px;
     height: 400px;
     padding: 0 2rem;
     margin: 2rem 0;
     position: relative;
 
-    .womens-section::before {
-        position: absolute;
-        content: "WOMENS CLOTHING";
-        width: max-content;
-        height: max-content;
-        font-family: fonts.$en;
-        font-size: 6vw;
-        color: colors.$neutral-40 ;
-        opacity: 0.4;
-        left: -8rem;
-        top: 2rem;
+    & div {
+
+        & img{
+            pointer-events: none;
+        }
+
+        & a {
+            @include flex(row, center, center);
+            width: max-content;
+            height: max-content;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: colors.$primary;
+            font-family: fonts.$bold;
+            font-size: 2rem;
+            position: absolute;
+
+            & div.hyper-anchor {
+                background-color: #171717;
+                width: 40px;
+                height: 40px;
+                content: "";
+                opacity: 1;
+                border-radius: 0.5rem;
+                background-image: url('/assets/icons/Arrows/arrow-left.svg');
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 60%;
+            }
+        }
     }
 
-
     .womens-section {
-        @include flex(row, center, center);
-        width: 50%;
+        @include flex(row, flex-end, flex-start);
+        width: 58%;
         height: 100%;
         position: absolute;
         top: 0;
@@ -144,28 +164,36 @@ section.hero {
         border-radius: 2rem;
         padding: 0 2rem;
 
-        img {
-            width: 30%;
+        & img {
+            width: 26%;
             position: absolute;
             bottom: 0;
+            right: 30%;
+            z-index: 1;
         }
 
-        span {
-            font-size: 5.3vw;
+        & span {
+            font-size: 4.3vw;
             font-family: fonts.$en;
             color: colors.$neutral-40;
             opacity: 0.4;
             letter-spacing: 0.2vw;
             text-align: left;
-            width: fit-content;
+            width: 100%;
             height: fit-content;
-            padding: 0 2rem;
+            margin-top: 2rem;
         }
+
+        & a {
+            bottom: 10%;
+            right: 10%;
+        }
+
     }
 
     .mens-section {
-        @include flex(row, center, center);
-        width: 50%;
+        @include flex(row, center, flex-end);
+        width: 63%;
         height: 100%;
         position: absolute;
         bottom: 0;
@@ -173,22 +201,31 @@ section.hero {
         border-radius: 2rem;
         padding: 0 2rem;
 
-        img {
-            width: 48%;
+        & img {
+            width: 38%;
             position: absolute;
             bottom: 0;
+            left: 20%;
+            z-index: 1;
         }
 
-        span {
-            font-size: 5.5vw;
+        & span {
+            font-size: 5vw;
             font-family: fonts.$en;
             color: colors.$neutral-40;
             opacity: 0.4;
-            letter-spacing: 1vw;
+            word-spacing: 15rem;
             text-align: left;
-            width: fit-content;
+            width: 100%;
             height: fit-content;
             padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+
+        & a {
+            top: 20%;
+            left: 8%;
         }
     }
 

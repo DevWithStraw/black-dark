@@ -4,6 +4,7 @@ import "./home.scss";
 import SpecialSale from "./layouts/special-sale";
 
 export default function Home() {
+
     return (
         <>
             <section className="hero">
@@ -35,11 +36,13 @@ export default function Home() {
                 </section>
                 <div className="womens-section">
                     <img src="/assets/images/womens-collection-model.png" alt="" />
-                    {/* <span> WOMENS CLOTHING </span> */}
+                    <span> WOMENS CLOTHING </span>
+                    <Link to={'/products/womens-collection'}> پـوشـاک  زنـانـه <div className="hyper-anchor"></div> </Link>
                 </div>
                 <div className="mens-section">
                     <img src="/assets/images/mens-collection-model.png" alt="" />
-                    {/* <span> MENS CLOTHING </span> */}
+                    <span> MENS CLOTHING </span>
+                    <Link to={'/products/mens-collection'}> پـوشـاک مـردانـه <div className="hyper-anchor"></div> </Link>
                 </div>
             </section>
 
