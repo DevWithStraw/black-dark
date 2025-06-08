@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./home.scss";
 import SpecialSale from "./layouts/special-sale";
+import Product from "./components/product";
 
 export default function Home() {
 
@@ -43,6 +44,17 @@ export default function Home() {
                     <img src="/assets/images/mens-collection-model.png" alt="" />
                     <span> MENS CLOTHING </span>
                     <Link to={'/products/mens-collection'}> پـوشـاک مـردانـه <div className="hyper-anchor"></div> </Link>
+                </div>
+            </section>
+
+            <section className="special-season-sale">
+                <h2> فروش ویژه فصل </h2>
+                <div className="background">
+                    <Product title={'کت بربری Burberry مدل A8 '} ogPrice={'۱،۴۱۶،۰۰'} finalPrice={'۱،۲۸۹،۲۰۰'} offer={27} image={'https://i.ibb.co/60GzP0c7/model-1.png'} />
+                    <Product title={'کت شلوار  بروکس Brooks   '} ogPrice={'۱،۴۱۶،۰۰'} finalPrice={'۱،۲۸۹،۲۰۰'} offer={25} image={'https://i.ibb.co/7twmcCSr/model-3.png'} />
+                    <Product title={'کت شلوارکانالی 320 Canali '} ogPrice={'۱،۴۱۶،۰۰'} finalPrice={'۱،۲۸۹،۲۰۰'} offer={18} image={'https://i.ibb.co/cX2qsfk4/model-2.png'} />
+                    <Product title={'کت زنانه اس پی ایتالیا SP Italy '} ogPrice={'۱،۴۱۶،۰۰'} finalPrice={'۱،۲۸۹،۲۰۰'} offer={32} image={'https://i.ibb.co/0jKHvGgC/model-4.png'} />
+                    <Product title={'کت چرمی بلک مدل وسطای vstay '} ogPrice={'۱،۴۱۶،۰۰'} finalPrice={'۱،۲۸۹،۲۰۰'} offer={25} image={'https://i.ibb.co/bg4Vz1GH/model-5.png'} />
                 </div>
             </section>
 

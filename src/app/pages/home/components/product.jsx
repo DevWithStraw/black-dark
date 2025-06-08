@@ -24,7 +24,7 @@ export default function Product({ title, image, ogPrice, finalPrice, offer, addr
                         </div>
                         <div className="side-arrow-bg">
                             <img className='shape' src="/assets/icons/Side-Arrow-BG.svg" alt="" />
-                            <img className='arrow' src="/assets/icons/Arrows/Arrow-Right-Up.svg" alt="side arrow" />
+                            <img className='arrow' src="/assets/icons/Arrows/arrow-right-up.svg" alt="side arrow" />
                         </div>
                     </div>
                 </div>
