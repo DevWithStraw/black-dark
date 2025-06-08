@@ -1,8 +1,7 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import "./home.scss";
 import SpecialSale from "./layouts/special-sale";
-import { Link } from "react-router-dom";
 
 export default function Home() {
     return (
@@ -10,14 +9,12 @@ export default function Home() {
             <section className="hero">
                 <div className="texts-container">
                     <div className="texts">
-                        <h2>
-                            کت شلوار های هاکوپیان
-                        </h2>
+                        <h2>کت شلوار های هاکوپیان</h2>
                         <h3>
                             انواع کت شلوار های مردانه و زنانه در بلک دارک
                             <Link className="arrow-left" to={'/special-sale'}></Link>
                         </h3>
-                        <span> HAKOPIAN </span>
+                        <span>HAKOPIAN</span>
                         <div className="shine"></div>
                     </div>
                 </div>
@@ -28,10 +25,24 @@ export default function Home() {
                     <img className="logo" src="/assets/images/hakopian-logo.svg" alt="logo" />
                 </div>
             </section>
-            <section className="special-sales">
-                <h2> فروش ویژه فصل </h2>
-                <SpecialSale />
+
+            <section className="gendred-collections">
+                <section className="background">
+                    <div className="borders border-top"></div>
+                    <div className="borders border-center"></div>
+                    <div className="borders border-bottom"></div>
+                    <div className="borders extra"></div>
+                </section>
+                <div className="womens-section">
+                    <img src="/assets/images/womens-collection-model.png" alt="" />
+                    {/* <span> WOMENS CLOTHING </span> */}
+                </div>
+                <div className="mens-section">
+                    <img src="/assets/images/mens-collection-model.png" alt="" />
+                    {/* <span> MENS CLOTHING </span> */}
+                </div>
             </section>
+
         </>
-    )
+    );
 }

@@ -35,7 +35,7 @@ section.hero {
                 font-size: 1.8rem;
                 margin-top: 1rem;
 
-                a.arrow-left{
+                a.arrow-left {
                     background-color: #e3e3e3;
                     border: none;
                     border-radius: 0.5rem;
@@ -103,7 +103,7 @@ section.hero {
             background-size: 40%
         }
 
-        & .logo{
+        & .logo {
             position: absolute;
             top: 30px;
             left: 40px;
@@ -111,6 +111,196 @@ section.hero {
             height: 120px;
         }
     }
+}
+
+.gendred-collections {
+    width: 100%;
+    height: 400px;
+    padding: 0 2rem;
+    margin: 2rem 0;
+    position: relative;
+
+    .womens-section::before {
+        position: absolute;
+        content: "WOMENS CLOTHING";
+        width: max-content;
+        height: max-content;
+        font-family: fonts.$en;
+        font-size: 6vw;
+        color: colors.$neutral-40 ;
+        opacity: 0.4;
+        left: -8rem;
+        top: 2rem;
+    }
+
+
+    .womens-section {
+        @include flex(row, center, center);
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 2rem;
+        padding: 0 2rem;
+
+        img {
+            width: 30%;
+            position: absolute;
+            bottom: 0;
+        }
+
+        span {
+            font-size: 5.3vw;
+            font-family: fonts.$en;
+            color: colors.$neutral-40;
+            opacity: 0.4;
+            letter-spacing: 0.2vw;
+            text-align: left;
+            width: fit-content;
+            height: fit-content;
+            padding: 0 2rem;
+        }
+    }
+
+    .mens-section {
+        @include flex(row, center, center);
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 2rem;
+        padding: 0 2rem;
+
+        img {
+            width: 48%;
+            position: absolute;
+            bottom: 0;
+        }
+
+        span {
+            font-size: 5.5vw;
+            font-family: fonts.$en;
+            color: colors.$neutral-40;
+            opacity: 0.4;
+            letter-spacing: 1vw;
+            text-align: left;
+            width: fit-content;
+            height: fit-content;
+            padding: 0 2rem;
+        }
+    }
+
+    .background {
+        background: #C9C9C9;
+        background: linear-gradient(90deg, rgba(201, 201, 201, 1) 100%, rgb(93, 93, 93) 100%);
+        width: 100%;
+        height: 100%;
+        content: "";
+        border-radius: 2rem;
+        position: relative;
+
+        & .borders {
+            position: absolute;
+            content: '';
+            background-color: #fff;
+
+            &:before,
+            &:after {
+                background-color: transparent;
+                content: "";
+                position: absolute;
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+
+        .border-top {
+            width: 25px;
+            height: 50%;
+            top: 0;
+            left: 40%;
+
+            &::before {
+                left: -2rem;
+                background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #fff 2rem);
+                transform: scale(-1, 1);
+            }
+
+            &:after {
+                background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #fff 2rem);
+                top: 0;
+                right: -2rem;
+            }
+        }
+
+        .border-center {
+            width: 25%;
+            height: 25px;
+            top: 50%;
+            left: 40%;
+
+            &::before {
+                left: 1.5rem;
+                top: -2rem;
+                background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #fff 2rem);
+                transform: scale(1, -1);
+            }
+
+            &::after {
+                left: 0;
+                bottom: 0;
+                background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #c9c9c9 2rem);
+                transform: scale(1, -1);
+            }
+        }
+
+        .border-bottom {
+            width: 25px;
+            height: 50%;
+            bottom: 0;
+            right: 35%;
+
+            &::before {
+                left: -2rem;
+                bottom: 0;
+                background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #fff 2rem);
+                transform: scale(-1);
+            }
+
+            &:after {
+                background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #fff 2rem);
+                bottom: 0;
+                right: -2rem;
+                transform: scale(1, -1);
+            }
+        }
+
+        .extra {
+            background-color: transparent;
+            width: 25px;
+            height: 25px;
+            right: 35%;
+            top: 50%;
+
+            &::before {
+                left: -2rem;
+                bottom: -2rem;
+                background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #fff 2rem);
+                transform: scale(-1, 1);
+            }
+
+
+            &::after {
+                left: -0.4rem;
+                bottom: -0.4rem;
+                background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #c9c9c9 2rem);
+                transform: scale(-1, 1);
+            }
+        }
+    }
+
 }
 
 .special-sales {

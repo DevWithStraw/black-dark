@@ -14,7 +14,7 @@ nav {
     gap: 1.5rem;
 
     a {
-      font-size: 16px;
+      font-size: 18px;
       color: colors.$primary;
     }
   }
@@ -54,7 +54,9 @@ nav {
     @include flex(row , center , center);
     border: 1px solid #bfbfbf;
     border-radius: 4px;
-    width: 200px;
+    min-width: 100px;
+    width: 100px;
+    max-width: max-content;
     height: 40px;
     position: relative;
     
@@ -72,6 +74,10 @@ nav {
       border: none;
       outline: none
     }
+
+    input::placeholder{
+      font-size: 1.1rem
+    }
   }
 
   ul {
@@ -79,11 +85,15 @@ nav {
     gap: 40px;
     width: max-content;
     height: 100%;
+
+    li{
+      font-size: 1.1rem;
+    }
   }
 
   h3{
     font-family: fonts.$en;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 300;
   }
 }
