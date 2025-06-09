@@ -64,14 +64,18 @@
     {
       "id": "5c44",
       "category": "مردانه"
+    },
+    {
+      "id": "b7d3",
+      "category": "کت "
     }
   ],
   "products": [
     {
-      "id": "6468",
-      "title": "ژاکت زیپ دار پشمی با آرم برجسته گوچی",
-      "enTitle": "Logo-Embossed Wool-Blend Zip-Up Sweater",
-      "brand": "GUCCI",
+      "id": "9df1",
+      "title": "پالتو نیکولاس مدل 2023 AW",
+      "enTitle": "",
+      "brand": "NOCOLAS",
       "sizes": [
         "SM",
         "S",
@@ -80,7 +84,7 @@
         "XL",
         "XS"
       ],
-     "colors": [
+      "colors": [
         {
           "letter": "B",
           "expanded": "Blue",
@@ -107,11 +111,197 @@
           "color": "#87AA93"
         }
       ],
-      "originalPrice": "2,800,000",
-      "offerPrice": "",
+      "originalPrice": "۸،۹۰۰،۰۰۰",
+      "offerPrice": "۵،۲۰۰،۰۰۰",
       "percentage": "",
-      "imageSrc": "https://i.ibb.co/xS2ndNwr/Gucci-center.png",
-      "category": "کاپشن"
+      "imageSrc": "https://i.ibb.co/bgw2X2DP/nicolas-overcoat.png",
+      "category": "کت ",
+      "slug": "/nicolas-overcoat-aw-2023"
+    },
+    {
+      "id": "a1b2",
+      "title": "کت جین مانگو LIGHT BLUE",
+      "enTitle": "",
+      "brand": "MANGO",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "letter": "B",
+          "expanded": "Blue",
+          "color": "#7DA8C3"
+        },
+        {
+          "letter": "G",
+          "expanded": "Gray",
+          "color": "#A1A1A1"
+        }
+      ],
+      "originalPrice": "۲،۴۵۰،۰۰۰",
+      "offerPrice": "۲،۱۵۰،۰۰۰",
+      "percentage": "12",
+      "imageSrc": "https://i.ibb.co/NnfcVz3d/mango-coat.png",
+      "category": "کت",
+      "slug": "/mango-light-blue-denim"
+    },
+    {
+      "id": "c3d4",
+      "title": "هودی اسکارپی مدل DARK",
+      "enTitle": "",
+      "brand": "SCARPI",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "letter": "B",
+          "expanded": "Black",
+          "color": "#1C1C1C"
+        },
+        {
+          "letter": "N",
+          "expanded": "Navy",
+          "color": "#2C3E50"
+        }
+      ],
+      "originalPrice": "۱،۹۸۰،۰۰۰",
+      "offerPrice": "۱،۶۴۰،۰۰۰",
+      "percentage": "17",
+      "imageSrc": "https://i.ibb.co/FbszyHpX/scrappy-hoddie.png",
+      "category": "هودی",
+      "slug": "/scarpi-dark-hoodie"
+    },
+    {
+      "id": "e5f6",
+      "title": "پیراهن زارا مدل 1893",
+      "enTitle": "",
+      "brand": "ZARA",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "letter": "W",
+          "expanded": "White",
+          "color": "#F9F9F9"
+        },
+        {
+          "letter": "B",
+          "expanded": "Blue",
+          "color": "#A2BEEB"
+        }
+      ],
+      "originalPrice": "۱،۲۵۰،۰۰۰",
+      "offerPrice": "۹۹۰،۰۰۰",
+      "percentage": "21",
+      "imageSrc": "https://i.ibb.co/Y7N2Vd9j/zara-shirt.png",
+      "category": "پیراهن",
+      "slug": "/zara-shirt-1893"
+    },
+    {
+      "id": "g7h8",
+      "title": "پیراهن می باخ مونیخ مدل 17899",
+      "enTitle": "",
+      "brand": "MAYBACH",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "letter": "G",
+          "expanded": "Gray",
+          "color": "#B1B1B1"
+        },
+        {
+          "letter": "B",
+          "expanded": "Black",
+          "color": "#111111"
+        }
+      ],
+      "originalPrice": "۲،۹۰۰،۰۰۰",
+      "offerPrice": "۲،۴۹۰،۰۰۰",
+      "percentage": "14",
+      "imageSrc": "https://i.ibb.co/nqRrdv5m/meybach-shirt.png",
+      "category": "پیراهن",
+      "slug": "/maybach-shirt-17899"
+    },
+    {
+      "id": "i9g0",
+      "title": "کت بربری Burberry مدل A8",
+      "enTitle": "",
+      "brand": "BURBERRY",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "letter": "K",
+          "expanded": "Khaki",
+          "color": "#C3B091"
+        },
+        {
+          "letter": "B",
+          "expanded": "Black",
+          "color": "#2B2B2B"
+        }
+      ],
+      "originalPrice": "۳،۹۰۰،۰۰۰",
+      "offerPrice": "۳،۳۰۰،۰۰۰",
+      "percentage": "15",
+      "imageSrc": "https://i.ibb.co/60GzP0c7/model-1.png",
+      "category": "کت",
+      "slug": "/burberry-jacket-a8"
+    },
+      {
+      "id": "i940",
+      "title": "کت بربری Burberry مدل A8",
+      "enTitle": "",
+      "brand": "BURBERRY",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "letter": "K",
+          "expanded": "Khaki",
+          "color": "#C3B091"
+        },
+        {
+          "letter": "B",
+          "expanded": "Black",
+          "color": "#2B2B2B"
+        }
+      ],
+      "originalPrice": "۳،۹۰۰،۰۰۰",
+      "offerPrice": "۳،۳۰۰،۰۰۰",
+      "percentage": "15",
+      "imageSrc": "https://i.ibb.co/bg4Vz1GH/model-5.png",
+      "category": "کت",
+      "slug": "/burberry-jacket-a8"
     }
   ]
 }
