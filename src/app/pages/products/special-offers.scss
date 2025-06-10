@@ -6,7 +6,7 @@
     @include flex(row, flex-start, center);
     height: max-content;
     gap: 0.5rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem 2rem;
     background-color: #f0f0f0;
     margin-top: 1rem;
 
@@ -19,7 +19,8 @@
 .bread-arrow {
     @include flex(row, center, center);
     font-style: normal;
-    background-image: url('/assets/icons/Arrows/Arrow-Left.svg');
+    background-image: url('/assets/icons/Arrows/arrow-left.svg');
+    mix-blend-mode: difference;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -32,73 +33,164 @@
 .special-offers-container {
     padding: 1rem 1.5rem;
 
-    & h2.title {
-        font-size: 2.2rem;
+    .general-info {
+        width: 50%;
     }
 
-    & h3.en-title {
-        font-size: 1rem;
-        font-weight: 400;
-    }
+    .purchase-info {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100px 80px 80px 100px auto;
 
-    .sizes-chooser {
-        @include flex(row, center, center);
-        gap: 1rem;
-        width: max-content;
-        margin: 2rem 0 1rem 0;
+        .title-container {
+            grid-row: 1/2;
 
-        span,
-        li {
-            @include flex(row, center, center);
-            width: 48px;
-            height: 48px;
-            border: 1px solid colors.$neutral-30;
-            border-radius: 0.5rem;
-            color: #171717;
-            font-family: fonts.$en;
-            font-size: 1.4rem;
-            cursor: pointer;
-            transition: all ease-in-out 0.3s;
+            & h2.title {
+                font-size: 2.2rem;
+            }
+
+            & h3.en-title {
+                font-size: 1rem;
+                font-weight: 400;
+            }
         }
 
-        .selectedSize {
+        .sizes-chooser {
+            @include flex(row, center, center);
+            gap: 1rem;
+            width: 100%;
+            height: max-content;
+            grid-row: 2/3;
+            place-self: center;
+
+            span,
+            li {
+                @include flex(row, center, center);
+                width: 48px;
+                height: 48px;
+                border: 1px solid colors.$neutral-30;
+                border-radius: 0.5rem;
+                color: #171717;
+                font-family: fonts.$en;
+                font-size: 1.4rem;
+                cursor: pointer;
+                transition: all ease-in-out 0.3s;
+            }
+
+            .selectedSize {
+                background-color: #171717;
+                color: #fff;
+                font-size: 1.7rem;
+            }
+
+            span {
+                text-align: center;
+                font-family: fonts.$regular;
+                font-size: 0.8rem;
+                cursor: initial;
+            }
+        }
+
+        .colors-picker {
+            @include flex(row, center, center);
+            direction: ltr;
+            grid-row: 3/4;
+            gap: 1rem;
+            width: 100%;
+            height: max-content;
+            place-self: center;
+
+            li {
+                @include flex(row, center, center);
+                width: 48px;
+                height: 48px;
+                border-radius: 0.5rem;
+                transition: all ease-in-out 0.3s;
+                cursor: pointer;
+                font-family: fonts.$en;
+                color: colors.$primary-20;
+                font-size: 1.5rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .selectedColor {
+                width: 128px;
+            }
+        }
+
+        .row {
+            @include flex(row, space-between, center);
+            grid-row: 4/5;
+
+            .prices {
+                font-size: 1.8rem;
+                font-family: fonts.$bold;
+            }
+
+            .brand {
+                font-family: fonts.$en;
+                font-size: 2rem;
+            }
+        }
+
+        & button.add-to-cart {
+            @include flex(row, center, center);
             background-color: #171717;
             color: #fff;
-            font-size: 1.7rem;
+            width: 100%;
+            height: 64px;
+            font-size: 1.2rem;
+            border-radius: 0.5rem;
+            border: none;
+            gap: 0.5rem;
+            grid-row: 5/6;
+
+            .cart {
+                width: 25px;
+                height: 25px;
+                content: "";
+                background-image: url('/assets/icons/cart.svg');
+                background-repeat: no-repeat;
+                background-size: 100% auto;
+                background-position: center center;
+            }
         }
 
-        span {
-            text-align: center;
-            font-family: fonts.$regular;
-            font-size: 0.8rem;
-            cursor: initial;
-        }
     }
 
-    .colors-picker {
-        width: max-content;
-        @include flex(row, center, center);
-        gap: 1rem;
-        height: max-content;
-        direction: ltr;
-
-        li {
-            @include flex(row, center, center);
-            width: 48px;
-            height: 48px;
-            border-radius: 0.5rem;
-            transition: all ease-in-out 0.3s;
-            cursor: pointer;
-            font-family: fonts.$en;
-            color: colors.$primary-20;
-            font-size: 1.5rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+    .more-details {
+        margin-top: 3rem;
+        
+        .detail-container{
+            position: relative;
         }
 
-        .selectedColor {
-            width: 128px;
+        .anchor{
+            background-image: url('/assets/icons/Arrows/alt-arrow-down.svg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-size: 100%;
+            left: 0;
+            top: 5px;
+            transition: all ease-in-out 0.3s;
+        }
+
+        .opened{
+            transform: rotate(-180deg);
+        }
+
+        p{
+           padding: 1rem 0;
+        }
+
+        summary {
+            list-style: none;
+            font-size: 1.4rem;
         }
     }
 }
