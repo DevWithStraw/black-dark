@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules';
 
-
 import Product from "./components/product";
 import QuickCards from "./components/quickCards";
 import { useQuery } from "@tanstack/react-query";

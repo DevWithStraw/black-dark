@@ -31,10 +31,27 @@
 }
 
 .special-offers-container {
+    @include flex(row, space-between, center);
     padding: 1rem 1.5rem;
+    width: 100%;
+    height: 100%;
+    gap: 3rem;
 
     .general-info {
         width: 50%;
+    }
+
+    .image-holder {
+        @include flex(row, center, center);
+        width: 50%;
+        height: 100%;
+
+        img {
+            width: 55%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 1rem;
+        }
     }
 
     .purchase-info {
@@ -161,13 +178,17 @@
     }
 
     .more-details {
+        @include flex(column, center, flex-start);
         margin-top: 3rem;
-        
-        .detail-container{
+        gap: 1rem;
+
+        .detail-container {
             position: relative;
+            width: 100%;
+            height: max-content;
         }
 
-        .anchor{
+        .anchor {
             background-image: url('/assets/icons/Arrows/alt-arrow-down.svg');
             background-repeat: no-repeat;
             background-position: center center;
@@ -180,17 +201,72 @@
             transition: all ease-in-out 0.3s;
         }
 
-        .opened{
+        .opened {
             transform: rotate(-180deg);
         }
 
-        p{
-           padding: 1rem 0;
+        p {
+            padding: 1rem 0;
+            line-height: 1.8rem;
+            text-align: justify;
         }
 
         summary {
             list-style: none;
             font-size: 1.4rem;
+        }
+    }
+}
+
+.product-info{
+    @include flex(row , flex-start , center);
+    margin: 5rem 0;
+    width: 100%;
+    height: 30px;
+    padding: 0 2rem;
+
+    ul{
+        @include flex(inherit , inherit , inherit);
+        list-style: none;
+        gap: 2.5rem;
+        position: relative;
+        width: 100%;
+
+        li{
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        &::before{
+            background-color: colors.$primary;
+            opacity: 0.2;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            right: -1rem;
+            bottom: -1rem;
+            content: "";
+            border-radius: 0.2rem;
+        }
+
+        &::after{
+            background-color: colors.$primary;
+            width: 100px;
+            height: 4px;
+            position: absolute;
+            right: -1rem;
+            bottom: -1rem;
+            content: "";
+            transition: all ease-in-out 0.3s;
+            border-radius: 0.2rem;
+        }
+
+        &.second::after{
+            right: 6rem;
+        }
+
+        &.third::after{
+            right: 14.5rem;
         }
     }
 }

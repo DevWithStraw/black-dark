@@ -28,7 +28,7 @@ export default function SpecialOffers() {
 
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
-    const [isDetailOpen , setIsDetailOpen]= useState(false);
+    const [isDetailOpen, setIsDetailOpen] = useState(false);
 
     const handleSize = (index) => {
         setSelectedSize(index)
@@ -38,10 +38,30 @@ export default function SpecialOffers() {
         setSelectedColor(index)
     }
 
-    const toggleDetail = (e) => {
-        e.target.classList.toggle('opened');
-        setIsDetailOpen(isDetailOpen => isDetailOpen = !isDetailOpen)
-    }
+    const toggleDetail = (index) => {
+        setIsDetailOpen(prevIndex => (prevIndex === index ? null : index));
+    };
+
+
+    const informations = [
+        {
+            summary: " توضیحات",
+            details: " کت و شلوارهای سبک اروپایی که ممکن است کت و شلوارهای قاره‌ای یا ایتالیایی نیز نامیده شوند، معمولاً نزدیک به سایز بدن و جذب بریده می‌شوند و دارای دو دکمه و در یک ردیف هستند. این کت‌وشلوارها برای مردان لاغراندام بسیار خوب به نظر می‌رسند. در سبک اروپایی شانه‌ها اغلب پد دارند و جایگاه دکمه‌ها و قسمت برگردان یقه کت بالاتر از سبک آمریکایی و انگلیسی است. سبک اروپایی برخلاف سبک انگلیسی، به دلیل اینکه در آب‌وهوای گرم‌تری پوشیده می‌شود با پارچه‌های سبک و خنک‌ دوخته می‌شود."
+        }, {
+            summary: "جزئیات و مراقبت",
+            details: " کت و شلوارهای سبک اروپایی که ممکن است کت و شلوارهای قاره‌ای یا ایتالیایی نیز نامیده شوند، معمولاً نزدیک به سایز بدن و جذب بریده می‌شوند و دارای دو دکمه و در یک ردیف هستند. این کت‌وشلوارها برای مردان لاغراندام بسیار خوب به نظر می‌رسند. در سبک اروپایی شانه‌ها اغلب پد دارند و جایگاه دکمه‌ها و قسمت برگردان یقه کت بالاتر از سبک آمریکایی و انگلیسی است. سبک اروپایی برخلاف سبک انگلیسی، به دلیل اینکه در آب‌وهوای گرم‌تری پوشیده می‌شود با پارچه‌های سبک و خنک‌ دوخته می‌شود."
+        }, {
+            summary: "اندازه و تناسب",
+            details: " کت و شلوارهای سبک اروپایی که ممکن است کت و شلوارهای قاره‌ای یا ایتالیایی نیز نامیده شوند، معمولاً نزدیک به سایز بدن و جذب بریده می‌شوند و دارای دو دکمه و در یک ردیف هستند. این کت‌وشلوارها برای مردان لاغراندام بسیار خوب به نظر می‌رسند. در سبک اروپایی شانه‌ها اغلب پد دارند و جایگاه دکمه‌ها و قسمت برگردان یقه کت بالاتر از سبک آمریکایی و انگلیسی است. سبک اروپایی برخلاف سبک انگلیسی، به دلیل اینکه در آب‌وهوای گرم‌تری پوشیده می‌شود با پارچه‌های سبک و خنک‌ دوخته می‌شود."
+        }
+        , {
+            summary: "تحویل و مرجوعی",
+            details: " کت و شلوارهای سبک اروپایی که ممکن است کت و شلوارهای قاره‌ای یا ایتالیایی نیز نامیده شوند، معمولاً نزدیک به سایز بدن و جذب بریده می‌شوند و دارای دو دکمه و در یک ردیف هستند. این کت‌وشلوارها برای مردان لاغراندام بسیار خوب به نظر می‌رسند. در سبک اروپایی شانه‌ها اغلب پد دارند و جایگاه دکمه‌ها و قسمت برگردان یقه کت بالاتر از سبک آمریکایی و انگلیسی است. سبک اروپایی برخلاف سبک انگلیسی، به دلیل اینکه در آب‌وهوای گرم‌تری پوشیده می‌شود با پارچه‌های سبک و خنک‌ دوخته می‌شود."
+        }
+       
+    ]
+
+    const [progress , setProgresss] = useState('initial');
 
     return (
         <>
@@ -54,6 +74,7 @@ export default function SpecialOffers() {
             </div>
 
             {productDetails?.map((product) => (
+                <>
                 <div className="special-offers-container" key={product.id}>
                     <section className="general-info">
                         <section className="purchase-info">
@@ -79,20 +100,35 @@ export default function SpecialOffers() {
                             <button className='add-to-cart'> افزودن به سبد خرید <div className="cart"></div> </button>
                         </section>
                         <section className="more-details">
-                            <div className="detail-container">
-                                <div className="anchor" onClick={(e) => toggleDetail(e)}></div>
-                                <details open={isDetailOpen ? true : false}>
-                                    <summary>  توضیحات </summary>
-                                    <p>
-                                        کت و شلوارهای سبک اروپایی که ممکن است کت و شلوارهای قاره‌ای یا ایتالیایی نیز نامیده شوند، معمولاً نزدیک به سایز بدن و جذب بریده می‌شوند و دارای دو دکمه و در یک ردیف هستند. این کت‌وشلوارها برای مردان لاغراندام بسیار خوب به نظر می‌رسند. در سبک اروپایی شانه‌ها اغلب پد دارند و جایگاه دکمه‌ها و قسمت برگردان یقه کت بالاتر از سبک آمریکایی و انگلیسی است. سبک اروپایی برخلاف سبک انگلیسی، به دلیل اینکه در آب‌وهوای گرم‌تری پوشیده می‌شود با پارچه‌های سبک و خنک‌ دوخته می‌شود.
-                                    </p>
-                                </details>
-                            </div>
+                            {informations.map((info, index) => (
+                                <div className="detail-container" key={index}>
+                                    <div className={isDetailOpen === index ? "anchor opened" : "anchor"} onClick={() => toggleDetail(index)}></div>
+                                    <details open={isDetailOpen === index}>
+                                        <summary onClick={(e) => {
+                                            e.preventDefault();
+                                            toggleDetail(index);
+                                        }}>
+                                            {info.summary}
+                                        </summary>
+                                        <p>{info.details}</p>
+                                    </details>
 
+                                </div>
+                            ))}
                         </section>
                     </section>
-                    <section className="image-holder"></section>
+                    <section className="image-holder">
+                        <img src={product.imageSrc} alt="" />
+                    </section>
                 </div>
+                <section className='product-info'>
+                    <ul className={progress}>
+                        <li onClick={() => setProgresss('initial')}> توضیحات </li>
+                        <li onClick={() => setProgresss('second')}> مشخصات </li>
+                        <li onClick={() => setProgresss('third')}>دیدگاه کاربران </li>
+                    </ul>
+                </section>
+                </>
             ))}
         </>
     )

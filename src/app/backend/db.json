@@ -116,7 +116,7 @@
       "percentage": "",
       "imageSrc": "https://i.ibb.co/bgw2X2DP/nicolas-overcoat.png",
       "category": "کت ",
-      "slug": "/nicolas-overcoat-aw-2023"
+      "slug": "nicolas-overcoat-aw-2023"
     },
     {
       "id": "a1b2",
@@ -147,7 +147,7 @@
       "percentage": "12",
       "imageSrc": "https://i.ibb.co/NnfcVz3d/mango-coat.png",
       "category": "کت",
-      "slug": "/mango-light-blue-denim"
+      "slug": "mango-light-blue-denim"
     },
     {
       "id": "c3d4",
@@ -177,7 +177,7 @@
       "percentage": "17",
       "imageSrc": "https://i.ibb.co/FbszyHpX/scrappy-hoddie.png",
       "category": "هودی",
-      "slug": "/scarpi-dark-hoodie"
+      "slug": "scarpi-dark-hoodie"
     },
     {
       "id": "e5f6",
@@ -208,7 +208,7 @@
       "percentage": "21",
       "imageSrc": "https://i.ibb.co/Y7N2Vd9j/zara-shirt.png",
       "category": "پیراهن",
-      "slug": "/zara-shirt-1893"
+      "slug": "zara-shirt-1893"
     },
     {
       "id": "g7h8",
@@ -239,7 +239,7 @@
       "percentage": "14",
       "imageSrc": "https://i.ibb.co/nqRrdv5m/meybach-shirt.png",
       "category": "پیراهن",
-      "slug": "/maybach-shirt-17899"
+      "slug": "maybach-shirt-17899"
     },
     {
       "id": "i9g0",
@@ -270,7 +270,7 @@
       "percentage": "15",
       "imageSrc": "https://i.ibb.co/60GzP0c7/model-1.png",
       "category": "کت",
-      "slug": "/burberry-jacket-a8"
+      "slug": "burberry-jacket-a8"
     },
       {
       "id": "i940",
@@ -301,7 +301,7 @@
       "percentage": "15",
       "imageSrc": "https://i.ibb.co/bg4Vz1GH/model-5.png",
       "category": "کت",
-      "slug": "/burberry-jacket-a8"
+      "slug": "burberry-jacket-a8"
     }
   ]
 }
