@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.scss";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,16 @@ export default function navbar() {
 
   const loginState = localStorage.getItem('verified');
   const adminState = localStorage.getItem('admin')
+
+  const [searchedContent, setSearchedConent] = useState("");
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      console.log("مقدار سرچ شده", searchedContent);
+      
+    }
+  };
+
 
   const navigate = useNavigate()
 
@@ -55,7 +65,10 @@ export default function navbar() {
       <div className="sub-nav">
         <div className="search-bar">
           <img src="/assets/icons/search.svg" alt="search ico" />
-          <input type="text" name="search-all" id="searchTheWholeSite" placeholder="جستجو" />
+          <input type="text" name="search-all" id="searchTheWholeSite" placeholder="جستجو"
+            value={searchedContent}
+            onChange={(event) => setSearchedConent(event.target.value)}
+            onKeyPress={handleKeyPress} />
         </div>
         <ul>
           <li> پیراهن </li>

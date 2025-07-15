@@ -21,36 +21,36 @@ export default function Home() {
         {
             title: 'کت بربری Burberry مدل A8',
             ogPrice: '۱،۴۱۶،۰۰',
-            finalPrice: '۱،۲۸۹،۲۰۰',
-            offer: 27,
+            offerPrice: '۱،۲۸۹،۲۰۰',
+            percentage: 27,
             imageSrc: 'https://i.ibb.co/60GzP0c7/model-1.png'
         },
         {
             title: 'کت شلوار  بروکس Brooks',
             ogPrice: '۱،۴۱۶،۰۰',
-            finalPrice: '۱،۲۸۹،۲۰۰',
-            offer: 25,
+            offerPrice: '۱،۲۸۹،۲۰۰',
+            percentage: 25,
             imageSrc: 'https://i.ibb.co/7twmcCSr/model-3.png'
         },
         {
             title: 'کت شلوارکانالی 320 Canali',
             ogPrice: '۱،۴۱۶،۰۰',
-            finalPrice: '۱،۲۸۹،۲۰۰',
-            offer: 18,
+            offerPrice: '۱،۲۸۹،۲۰۰',
+            percentage: 18,
             imageSrc: 'https://i.ibb.co/cX2qsfk4/model-2.png'
         },
         {
             title: 'کت زنانه اس پی ایتالیا SP Italy',
             ogPrice: '۱،۴۱۶،۰۰',
-            finalPrice: '۱،۲۸۹،۲۰۰',
-            offer: 32,
+            offerPrice: '۱،۲۸۹،۲۰۰',
+            percentage: 32,
             imageSrc: 'https://i.ibb.co/0jKHvGgC/model-4.png'
         },
         {
             title: 'کت چرمی بلک مدل وسطای vstay',
             ogPrice: '۱،۴۱۶،۰۰',
-            finalPrice: '۱،۲۸۹،۲۰۰',
-            offer: 25,
+            offerPrice: '۱،۲۸۹،۲۰۰',
+            percentage: 25,
             imageSrc: 'https://i.ibb.co/bg4Vz1GH/model-5.png'
         }
     ];
@@ -170,7 +170,14 @@ export default function Home() {
                     </div>
 
                     {Clothing.map((clothing, index) => (
-                        <Product key={index} title={clothing.title} ogPrice={clothing.ogPrice} finalPrice={clothing.finalPrice} offer={clothing.offer} image={clothing.imageSrc} />
+                        <Product
+                            key={index}
+                            title={clothing.title}
+                            ogPrice={clothing.originalPrice}
+                            offerPrice={clothing.offerPrice}
+                            percentage={clothing.percentage}
+                            image={clothing.imageSrc}
+                        />
                     ))}
 
                 </div>
@@ -178,7 +185,12 @@ export default function Home() {
 
             <section className="quick-access-links">
                 {Quicks.map((card, index) => (
-                    <QuickCards key={index} imageSrc={card.imageSrc} title={card.title} enTitle={card.enTitle} link={card.link} />
+                    <QuickCards
+                        key={index}
+                        imageSrc={card.imageSrc}
+                        title={card.title}
+                        enTitle={card.enTitle}
+                        link={card.link} />
                 ))}
             </section>
 
@@ -201,8 +213,8 @@ export default function Home() {
                             <Product
                                 title={clothing.title}
                                 ogPrice={clothing.originalPrice}
-                                finalPrice={clothing.offerPrice}
-                                offer={clothing.offer}
+                                offerPrice={clothing.offerPrice}
+                                percentage={clothing.percentage}
                                 image={clothing.imageSrc}
                             />
                         </SwiperSlide>
