@@ -2,6 +2,7 @@ import { baseUrl } from '@app/helpers/variables';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Product from '../home/components/product';
 
 export default function Products() {
 
@@ -10,6 +11,7 @@ export default function Products() {
     const queryFn = async () => {
         try {
             const { data } = await axios.get(`${baseUrl}/products`);
+            console.log(data)
             return data;
         } catch (error) {
             console.error(error);
@@ -26,34 +28,34 @@ export default function Products() {
 
     const filteredProducts = products?.filter((product) => product.category === selectedCategory);
 
+
     return (
         <div className="container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <ul style={{ width: '600px', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '1rem', cursor: 'pointer' }}>
+            {/* <ul style={{ width: '600px', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '1rem', cursor: 'pointer' }}>
                 {categories?.map((category, index) => (
                     <li onClick={() => setSelectedCategory(category)} key={index}> {category} </li>
                 ))}
-            </ul>
+            </ul> */}
 
             <section style={{ margin: "3rem" }}>
                 {selectedCategory !== "" ? filteredProducts?.map((product) => (
-                    <div key={product.id} style={{ marginBottom: '20px' }}>
-                        <h3>{product.title}</h3>
-                        <p>{product.category}</p>
-                        <p>Brand: {product.brand}</p>
-                        <p>Original Price: {product.originalPrice} تومان</p>
-                        <p>Offer Price: {product.offerPrice ? product.offerPrice : 'Not Available'} تومان</p>
-                        <p>Discount: {product.percentage}</p>
-                    </div>
+                    <>
+                        <Product key={product.id} style={{ marginBottom: '20px' }}
+                            title={product.title}
+                            category={product.category}
+                            ogPrice={product.originalPrice}
+                            offerPrice={product.offerPrice}
+                            brand={product.brand}
+                            percentage={product.percentage}
+                            image={product.imageSrc}
+                        />
+                    </>
                 )) : products?.map((product) => (
-                    <div key={product.id} style={{ marginBottom: '20px' }}>
-                        <img src={product.imageSrc}/>
-                        <h3>{product.title}</h3>
-                        <p>{product.category}</p>
-                        <p>Brand: {product.brand}</p>
-                        <p>Original Price: {product.originalPrice} تومان</p>
-                        <p>Offer Price: {product.offerPrice ? product.offerPrice : 'Not Available'} تومان</p>
-                        <p>Discount: {product.percentage}</p>
-                    </div>
+                    <Product key={product.id} style={{ marginBottom: '20px' }} title={product.title} category={product.category} ogPrice={product.originalPrice} brand={product.brand}
+                        offerPrice={product.offerPrice}
+                        percentage={product.percentage}
+                        image={product.imageSrc}
+                    />
                 ))}
             </section>
         </div>
