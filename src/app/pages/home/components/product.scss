@@ -7,6 +7,25 @@
     height: 380px;
     position: relative;
 
+    .colors-container{
+        @include flex(column , center , center);
+        gap: 0.5rem;
+        width: 30px;
+        height: max-content;
+        position: absolute;
+        z-index: 2;
+        bottom:85px;
+        right: 0;
+        padding: 0.5rem;
+
+        .box{
+            width: 16px;
+            height: 16px;
+            border-radius: 0.2rem;
+            box-shadow: 3px 3px 3px #2222224e;
+        }
+    }
+
     img {
         border-radius: inherit;
         position: absolute;

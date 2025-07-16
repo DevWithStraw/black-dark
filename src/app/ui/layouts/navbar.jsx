@@ -3,7 +3,7 @@ import "./navbar.scss";
 
 import { Link, useNavigate } from "react-router-dom";
 
-export default function navbar() {
+export default function Navbar({ products, selectedCategory, setSelectedCategory }) {
 
   const loginState = localStorage.getItem('verified');
   const adminState = localStorage.getItem('admin')
@@ -13,10 +13,9 @@ export default function navbar() {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       console.log("مقدار سرچ شده", searchedContent);
-      
+
     }
   };
-
 
   const navigate = useNavigate()
 
@@ -42,6 +41,8 @@ export default function navbar() {
       url: "/blog",
     },
   ];
+
+  const categories = [...new Set(products?.map(product => product.category))];
 
   return (
     <>
@@ -71,13 +72,20 @@ export default function navbar() {
             onKeyPress={handleKeyPress} />
         </div>
         <ul>
-          <li> پیراهن </li>
-          <li> تیشرت </li>
-          <li> شلوار </li>
-          <li> کت و شلوار </li>
-          <li> ژاکت </li>
-          <li> کاپشن </li>
+          {categories == "" ? <>
+            <li> پیراهن </li>
+            <li> تیشرت </li>
+            <li> شلوار </li>
+            <li> کت و شلوار </li>
+            <li> ژاکت </li>
+            <li> کاپشن </li></> :
+            categories?.map((category, index) => (
+              <li onClick={() => setSelectedCategory(category)} key={index}>
+                {category}
+              </li>
+            ))}
         </ul>
+
         <h3>BLACK DARK</h3>
       </div>
     </>

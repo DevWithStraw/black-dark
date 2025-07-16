@@ -4,17 +4,21 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Product from '../home/components/product';
 import Navbar from '@app/ui/layouts/navbar';
+import { useQueryClient } from '@tanstack/react-query';
 
 import './products.scss';
 
 export default function Products() {
 
+    const queryClient = useQueryClient();
+
     const [selectedCategory, setSelectedCategory] = useState(""); //set value selected category
+
+    const [priceQuery , setPriceQuery] = useState("");
 
     const queryFn = async () => {
         try {
-            const { data } = await axios.get(`${baseUrl}/products`);
-            console.log(data)
+            const { data } = await axios.get(`${baseUrl}/products?${priceQuery}`);
             return data;
         } catch (error) {
             console.error(error);
@@ -27,22 +31,29 @@ export default function Products() {
         queryFn,
     });
 
-    const categories = [...new Set(products?.map(product => product.category))];
-
     const filteredProducts = products?.filter((product) => product.category === selectedCategory);
+
+    const handlePrice = async () => {
+         await setPriceQuery("originalPrice=۵،۲۰۰،۰۰۰");
+        queryClient.invalidateQueries({ queryKey: ['products'] });
+    }
 
 
     return (
         <>
-            <Navbar />
+            <Navbar
+                products={products}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+            />  
+
+            <button onClick={handlePrice}> show 5,200,000 </button>
+
+            {priceQuery}
+
+
+
             <div className="container">
-
-                {/* <ul style={{ width: '600px', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '1rem', cursor: 'pointer' }}>
-                {categories?.map((category, index) => (
-                    <li onClick={() => setSelectedCategory(category)} key={index}> {category} </li>
-                    ))}
-                    </ul> */}
-
                 <section className='products'>
                     {selectedCategory !== "" ? filteredProducts?.map((product) => (
                         <Product key={product.id}
@@ -67,6 +78,7 @@ export default function Products() {
                             image={product.imageSrc}
                             width={'326px'}
                             height={'560px'}
+                            colors={product.colors}
                         />
                     ))}
                 </section>
